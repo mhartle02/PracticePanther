@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="C:\Users\mghar\source\repos\Console.PracticePanther\PracticePanther.CLI\Program.cs" Link="Program.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PracticePanther.Library\PracticePanther.Library.csproj" />
   </ItemGroup>
 
