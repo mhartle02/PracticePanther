@@ -1,4 +1,5 @@
 ﻿using PracticePanther.CLI.Models;
+using PracticePanther.Library.Services;
 using System;
 
 namespace PracticePanther
@@ -7,7 +8,7 @@ namespace PracticePanther
     {
         static public void Main(string[] args)
         {
-            var CurrentClients = new List<Client>();
+            var MyClientService = ClientService.Current;
             var Projects = new List<Project>();
             int MenuInput;
             bool Quit = false;
@@ -45,7 +46,7 @@ namespace PracticePanther
                             var notes = Console.ReadLine();
 
 
-                            CurrentClients.Add(
+                            MyClientService.Add(
                                 new Client
                                 {
                                     Id = id,
@@ -61,18 +62,18 @@ namespace PracticePanther
                         {
                             //list clients
                             Console.WriteLine("\n---Clients---");
-                            CurrentClients.ForEach(Console.WriteLine);
+                            MyClientService.Read();
 
                         }
                         else if (MenuInput == 3)
                         {
                             //update clients
                             Console.WriteLine("Which client would you like to Update?");
-                            CurrentClients.ForEach(Console.WriteLine);
+                            MyClientService.Read();
                             Console.Write("\n> ");
                             var updateChoice = int.Parse(Console.ReadLine() ?? "0");
 
-                            var clientToUpdate = CurrentClients.FirstOrDefault(c => c.Id == updateChoice);
+                            var clientToUpdate = MyClientService.Get(updateChoice);
                             if (clientToUpdate != null)
                             {
                                 Console.WriteLine("What would you like to update? \n 1) Name 2) Open Date 3) Close Date 4) Notes");
@@ -105,14 +106,14 @@ namespace PracticePanther
                         {
                             //delete clients
                             Console.WriteLine("Which client would you like to delete?");
-                            CurrentClients.ForEach(Console.WriteLine);
+                            MyClientService.Read();
                             Console.Write("\n> ");
                             var deleteChoice = int.Parse(Console.ReadLine() ?? "0");
 
-                            var clientToRemove = CurrentClients.FirstOrDefault(c => c.Id == deleteChoice);
+                            var clientToRemove = MyClientService.Get(deleteChoice);
                             if (clientToRemove != null)
                             {
-                                CurrentClients.Remove(clientToRemove);
+                                MyClientService.Delete(deleteChoice);
                             }
                         }
                     } while (MenuInput != 5);
