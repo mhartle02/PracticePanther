@@ -14,6 +14,8 @@ namespace PracticePanther.CLI.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+
+
         public Project()
         {
             Name = string.Empty;

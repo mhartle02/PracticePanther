@@ -1,6 +1,6 @@
 ﻿using PracticePanther.CLI.Models;
 using System;
-//hii
+
 namespace PracticePanther
 {
     public class Program
@@ -35,11 +35,25 @@ namespace PracticePanther
                             Console.Write("Name: ");
                             var name = Console.ReadLine();
 
+                            Console.Write("Open Date: ");
+                            var openDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+
+                            Console.Write("Close Date: ");
+                            var closeDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+
+                            Console.Write("Notes: ");
+                            var notes = Console.ReadLine();
+
+
                             CurrentClients.Add(
                                 new Client
                                 {
                                     Id = id,
-                                    Name = name ?? "Unnamed Client"
+                                    Name = name ?? "Unnamed Client",
+                                    OpenDate = openDate,
+                                    CloseDate = closeDate,
+                                    Notes = notes
+
                                 }
                             );
                         }
@@ -61,8 +75,30 @@ namespace PracticePanther
                             var clientToUpdate = CurrentClients.FirstOrDefault(c => c.Id == updateChoice);
                             if (clientToUpdate != null)
                             {
-                                Console.Write("What is the client's updated name?\n > ");
-                                clientToUpdate.Name = Console.ReadLine() ?? "Unnamed Client";
+                                Console.WriteLine("What would you like to update? \n 1) Name 2) Open Date 3) Close Date 4) Notes");
+                                Console.Write("> ");
+                                int WhichUpdate = Convert.ToInt32(Console.ReadLine());
+                                if(WhichUpdate == 1) 
+                                {
+                                    Console.Write("What is the client's updated name?\n > ");
+                                    clientToUpdate.Name = Console.ReadLine() ?? "Unnamed Client";
+                                }
+                                else if(WhichUpdate == 2)
+                                {
+                                    Console.Write("What is the client's updated Open Date?\n > ");
+                                    clientToUpdate.OpenDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+
+                                }
+                                else if(WhichUpdate == 3)
+                                {
+                                    Console.Write("What is the client's updated Close Date?\n > ");
+                                    clientToUpdate.CloseDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+                                }
+                                else if(WhichUpdate == 4)
+                                {
+                                    Console.Write("Enter new client note.\n > ");
+                                    clientToUpdate.Notes = Console.ReadLine() ?? "null";
+                                }
                             }
                         }
                         else if (MenuInput == 4)
