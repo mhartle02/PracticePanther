@@ -4,10 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Console.PracticePanther.Models
+namespace PracticePanther.CLI.Models
 {
     public class Client
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Client()
+        {
+            Name = string.Empty;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}. {Name}";
+        }
+
+
+
+
+
+
+
+
+
+
+        /*
+        
+        
+        
+        
         private int id;
         private DateTime opendate, closedate;
         private bool isactive;
@@ -83,6 +110,18 @@ namespace Console.PracticePanther.Models
             }
         }
 
+        public List<Project> ClientProjects
+        {
+            get
+            {
+                return ClientProjects;
+            }
+            set
+            {
+
+            }
+        }
+     
 
 
 
@@ -91,5 +130,6 @@ namespace Console.PracticePanther.Models
 
 
 
-    }
+        */
+    } 
 }

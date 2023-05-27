@@ -4,10 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Console.PracticePanther.Models
+namespace PracticePanther.CLI.Models
 {
     public class Project
     {
+
+
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Project()
+        {
+            Name = string.Empty;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}. {Name}";
+        }
+
+
+        /*
         private int Id, ClientId;
         private DateTime OpenDate, CloseDate;
         private bool IsActive;
@@ -99,7 +117,7 @@ namespace Console.PracticePanther.Models
 
 
 
-
+        */
 
 
     }
