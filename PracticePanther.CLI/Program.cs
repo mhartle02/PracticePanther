@@ -9,7 +9,7 @@ namespace PracticePanther
         static public void Main(string[] args)
         {
             var MyClientService = ClientService.Current;
-            var Projects = new List<Project>();
+            var MyProjectService = ProjectService.Current;
             int MenuInput;
             bool Quit = false;
 
@@ -135,7 +135,7 @@ namespace PracticePanther
                             Console.Write("Name: ");
                             var name = Console.ReadLine();
 
-                            Projects.Add(
+                            MyProjectService.Add(
                                 new Project
                                 {
                                     Id = id,
@@ -146,17 +146,17 @@ namespace PracticePanther
                         else if (MenuInput == 2)
                         {
                             Console.WriteLine("\n---Projects---");
-                            Projects.ForEach(Console.WriteLine);
+                            MyProjectService.Read();
                         }
                         else if (MenuInput == 3)
                         {
                             //Update existing project
                             Console.WriteLine("Which project would you like to Update?");
-                            Projects.ForEach(Console.WriteLine);
+                            MyProjectService.Read();
                             Console.Write("\n> ");
                             var updateChoice = int.Parse(Console.ReadLine() ?? "0");
 
-                            var projectToUpdate = Projects.FirstOrDefault(p => p.Id == updateChoice);
+                            var projectToUpdate = MyProjectService.Get(updateChoice);
                             if (projectToUpdate != null)
                             {
                                 Console.Write("What is the project's updated name?\n > ");
@@ -167,14 +167,14 @@ namespace PracticePanther
                         {
                             //Delete existing project
                             Console.WriteLine("Which project would you like to delete?");
-                            Projects.ForEach(Console.WriteLine);
+                            MyProjectService.Read();
                             Console.Write("\n> ");
                             var deleteChoice = int.Parse(Console.ReadLine() ?? "0");
 
-                            var projectToRemove = Projects.FirstOrDefault(c => c.Id == deleteChoice);
+                            var projectToRemove = MyProjectService.Get(deleteChoice);
                             if (projectToRemove != null)
                             {
-                                Projects.Remove(projectToRemove);
+                                MyProjectService.Delete(deleteChoice);
                             }
                         }
 
