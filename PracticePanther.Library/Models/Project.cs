@@ -30,7 +30,7 @@ namespace PracticePanther.CLI.Models
 
         public override string ToString()
         {
-            return $"{Id}. {Name}";
+            return $"{Id}. {Name} (Open Date: {OpenDate} Close Date: {CloseDate}) Client id: {ClientId}";
         }
 
     }

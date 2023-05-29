@@ -135,11 +135,23 @@ namespace PracticePanther
                             Console.Write("Name: ");
                             var name = Console.ReadLine();
 
+                            Console.Write("Open Date: ");
+                            var openDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+
+                            Console.Write("Close Date: ");
+                            var closeDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+
+                            Console.Write("Client Id: ");
+                            var clientid = int.Parse(Console.ReadLine() ?? "0");
+
                             MyProjectService.Add(
                                 new Project
                                 {
                                     Id = id,
-                                    Name = name ?? "Unnamed Project"
+                                    ClientId = clientid,
+                                    Name = name ?? "Unnamed Project",
+                                    OpenDate = openDate,
+                                    CloseDate = closeDate,
                                 }
                             );
                         }
