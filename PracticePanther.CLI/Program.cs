@@ -171,8 +171,30 @@ namespace PracticePanther
                             var projectToUpdate = MyProjectService.Get(updateChoice);
                             if (projectToUpdate != null)
                             {
-                                Console.Write("What is the project's updated name?\n > ");
-                                projectToUpdate.Name = Console.ReadLine() ?? "Unnamed Project";
+                                Console.WriteLine("What would you like to update? \n 1) Name 2) Open Date 3) Close Date 4) Client Id");
+                                Console.Write("> ");
+                                int WhichUpdate = Convert.ToInt32(Console.ReadLine());
+                                if (WhichUpdate == 1)
+                                {
+                                    Console.Write("What is the project's updated name?\n > ");
+                                    projectToUpdate.Name = Console.ReadLine() ?? "Unnamed Client";
+                                }
+                                else if (WhichUpdate == 2)
+                                {
+                                    Console.Write("What is the project's updated Open Date?\n > ");
+                                    projectToUpdate.OpenDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+
+                                }
+                                else if (WhichUpdate == 3)
+                                {
+                                    Console.Write("What is the project's updated Close Date?\n > ");
+                                    projectToUpdate.CloseDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Today.ToString());
+                                }
+                                else if (WhichUpdate == 4)
+                                {
+                                    Console.Write("Enter new client id\n > ");
+                                    projectToUpdate.ClientId = int.Parse(Console.ReadLine() ?? "0");
+                                }
                             }
                         }
                         else if (MenuInput == 4)
