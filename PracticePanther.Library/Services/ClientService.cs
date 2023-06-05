@@ -31,7 +31,11 @@ namespace PracticePanther.Library.Services
         private List<Client> CurrentClients;
         private ClientService()
         {
-            CurrentClients = new List<Client>();
+            CurrentClients = new List<Client>
+            {
+                new Client {Id = 1, Name = "Mason Hartle"},
+                new Client {Id = 2, Name = "Joe Padeni"}
+            };
         }
 
         public Client? Get(int id)
@@ -39,6 +43,10 @@ namespace PracticePanther.Library.Services
             return CurrentClients.FirstOrDefault(c => c.Id == id);
         }
 
+        public List<Client> currentclients
+        {
+            get { return CurrentClients; }
+        }
         public void Add(Client? client)
         {
             if (client != null)
@@ -59,7 +67,10 @@ namespace PracticePanther.Library.Services
             {
                 CurrentClients.Remove(ClientToRemove);
             }
-   
+        }
+        public void Delete(Client c)
+        {
+            Delete(c);
         }
     }
 }
