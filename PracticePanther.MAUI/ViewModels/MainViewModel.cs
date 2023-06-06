@@ -2,6 +2,7 @@
 using PracticePanther.Library.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,14 +13,25 @@ namespace PracticePanther.MAUI.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public List<Client> Clients
+        public ObservableCollection <Client> Clients
         {
             get
             {
-                return ClientService.Current.currentclients;
+                if (string.IsNullOrEmpty(Query))
+                {
+                    return new ObservableCollection<Client>(ClientService.Current.currentclients);
+                }
+                return new ObservableCollection<Client>(ClientService.Current.Search(Query));
+                
             }
         }
 
+        public string Query { get; set; }
+
+        public void Search()
+        {
+            NotifyPropertyChanged("Clients");
+        }
         public void Delete()
         {
             if (SelectedClient == null)

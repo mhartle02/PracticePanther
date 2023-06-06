@@ -38,6 +38,13 @@ namespace PracticePanther.Library.Services
             };
         }
 
+        public List<Client> Search (string query)
+        {
+
+            
+            return CurrentClients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
+        }
+
         public Client? Get(int id)
         {
             return CurrentClients.FirstOrDefault(c => c.Id == id);
@@ -70,7 +77,7 @@ namespace PracticePanther.Library.Services
         }
         public void Delete(Client c)
         {
-            Delete(c);
+            Delete(c.Id);
         }
     }
 }
