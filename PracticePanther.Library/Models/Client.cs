@@ -24,7 +24,8 @@ namespace PracticePanther.CLI.Models
 
         public override string ToString()
         {
-            return $"{Id}. {Name}  (Open Date: {OpenDate} Close Date: {CloseDate}) Notes: {Notes}";
+            return $"{Id}. {Name}";
+                //(Open Date: {OpenDate} Close Date: {CloseDate}) Notes: {Notes}";
         }
        
     } 

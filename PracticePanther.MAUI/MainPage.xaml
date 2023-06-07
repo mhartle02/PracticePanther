@@ -6,31 +6,63 @@
     <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="12*"/>
+                <RowDefinition Height="8*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-
             <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Label 
+                    Grid.Column="1" 
+                    Text="Client Manager" 
+                    HorizontalTextAlignment="Center"
+                    FontSize="25" 
+                    TextColor="MediumPurple" 
+                    FontFamily="Century Gothic">                    
+                </Label>
+            
+            </Grid>
+            
+            <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Entry Grid.Column="0" Text="{Binding Path=Query}"></Entry>
-                <Button Grid.Column="1" Text="Search" Clicked="SearchClicked"></Button>
+                <Entry Grid.Column="0" Text="{Binding Path=Query}"
+                       BackgroundColor="Beige" 
+                       TextColor="Black">
+                    
+                </Entry>
+
+                <Button 
+                    Grid.Column="1" 
+                    Text="Search" 
+                    Clicked="SearchClicked">
+                </Button>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="9.5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="    "></Label>
                 <ListView
+                    Grid.Row="1"
                     ItemsSource="{Binding Path=Clients}"
-                    SelectedItem="{Binding Path=SelectedClient, Mode=TwoWay}"
-                    >
+                    SelectedItem="{Binding Path=SelectedClient, Mode=TwoWay}">
 
                 </ListView>
             </Grid>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
