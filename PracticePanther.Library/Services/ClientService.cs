@@ -34,7 +34,7 @@ namespace PracticePanther.Library.Services
             CurrentClients = new List<Client>
             {
                 new Client {Id = 1, Name = "Mason Hartle"},
-                new Client {Id = 2, Name = "Joe Padeni"}
+                new Client {Id = 2, Name = "John Doe"}
             };
         }
 

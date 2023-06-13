@@ -22,5 +22,10 @@ namespace PracticePanther.MAUI
             (BindingContext as MainViewModel).Delete();
         }
 
+        private void ClientClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//Client");
+        }
+
     }
 }
