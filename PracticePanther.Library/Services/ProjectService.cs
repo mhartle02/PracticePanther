@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PracticePanther.CLI.Models;
+using PracticePanther.Library.Models;
 using System.Xml.Linq;
 
 namespace PracticePanther.Library.Services

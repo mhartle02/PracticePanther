@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PracticePanther.CLI.Models;
+using PracticePanther.Library.Models;
 
 namespace PracticePanther.Library.Services
 {
@@ -79,6 +79,8 @@ namespace PracticePanther.Library.Services
         {
             Delete(c.Id);
         }
+
+
     }
 }
 

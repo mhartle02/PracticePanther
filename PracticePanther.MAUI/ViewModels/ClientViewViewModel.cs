@@ -1,5 +1,5 @@
 ﻿using PracticePanther.Library.Services;
-using PracticePanther.CLI.Models;
+using PracticePanther.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
