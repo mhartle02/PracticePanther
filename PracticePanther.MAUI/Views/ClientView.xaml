@@ -8,14 +8,22 @@
              >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="700"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="75" />
+        </Grid.RowDefinitions>
+        
         <Button
+            
             Grid.Column="0"
+            Grid.Row="1"
             Text="Back"
             Clicked="GoBack">
+            
         </Button>        
         
     </Grid>

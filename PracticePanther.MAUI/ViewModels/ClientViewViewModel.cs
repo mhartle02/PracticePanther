@@ -1,5 +1,8 @@
-﻿using System;
+﻿using PracticePanther.Library.Services;
+using PracticePanther.CLI.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +17,14 @@ namespace PracticePanther.MAUI.ViewModels
         public ClientViewViewModel()
         {
 
+        }
+
+        public ObservableCollection<Client> Clients
+        {
+            get
+            {
+                return new ObservableCollection<Client>(ClientService.Current.currentclients);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

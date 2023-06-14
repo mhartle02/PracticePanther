@@ -27,5 +27,10 @@ namespace PracticePanther.MAUI
             Shell.Current.GoToAsync("//Client");
         }
 
+        private void NewClientClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("NewClient");
+        }
+
     }
 }
