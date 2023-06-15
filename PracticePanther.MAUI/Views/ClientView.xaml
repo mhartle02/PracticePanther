@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.ClientView"
              Title="ClientView"
-             Background="Transparent"
-             BackgroundColor="#272537"         
+             Background="#95afc0"      
              >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,7 +17,8 @@
         </Grid.RowDefinitions>
         
         <Button
-            
+            BackgroundColor="#535c68"
+            TextColor="White"
             Grid.Column="0"
             Grid.Row="1"
             Text="Back"
