@@ -2,10 +2,24 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.MainPage"
-             Background="Transparent"
-             BackgroundColor="#272537">
+             Background="#95afc0">
+
+
 
     <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Button Text="Manage Clients &amp; Projects" Clicked="ClientsClicked" Background="#6ab04c" TextColor="White"></Button>
+            <Button Text="Manage Employees" Background="#eb4d4b" TextColor="White"></Button>
+            <Button Text="Enter Time" Background="#686de0" TextColor="White"></Button>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+
+<!--<ScrollView>
 
         <Grid>
 
@@ -110,4 +124,4 @@
             </Grid>
         </Grid>
     </ScrollView>
-</ContentPage>
+</ContentPage>-->
