@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.ClientView"
-             Title="ClientView"
+             Title="Clients"
              Background="#95afc0"
              Padding="20"
              >
@@ -28,7 +28,8 @@
             </Grid.ColumnDefinitions>
 
             <Entry  Grid.Column="0"
-                Background="#95afc0"
+                Background="white"
+                TextColor="Black"
                 />
             <Button Text="Search"
                     Grid.Column="1"
@@ -39,7 +40,8 @@
             <Button Text="Add"
                     Background="#6ab04c"
                     TextColor="White"
-                    Grid.Column="2"              
+                    Grid.Column="2"
+                    Clicked="AddClicked"
             />
         </Grid>
 

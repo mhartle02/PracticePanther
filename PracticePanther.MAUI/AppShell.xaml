@@ -18,6 +18,11 @@
         Title="Client Management"
         ContentTemplate="{DataTemplate local2:ClientView}"
         Route="Clients" />
+    
+    <ShellContent
+        Title="ClientDetail"
+        ContentTemplate="{DataTemplate local2:ClientDetailView}"
+        Route="ClientDetail" />
 
 
 
