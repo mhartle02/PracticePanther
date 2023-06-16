@@ -16,5 +16,11 @@ public partial class ClientView : ContentPage
         Shell.Current.GoToAsync("//MainPage");
     }
 
+    private void DeleteClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ClientViewViewModel).RefreshClientList();
+    }
+
+
 
 }

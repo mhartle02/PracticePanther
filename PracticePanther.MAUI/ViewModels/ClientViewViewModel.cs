@@ -14,16 +14,16 @@ namespace PracticePanther.MAUI.ViewModels
 {
     public class ClientViewViewModel: INotifyPropertyChanged
     {
-        public ClientViewViewModel()
-        {
+        public Client SelectedClient { get; set; }
 
-        }
-
-        public ObservableCollection<Client> Clients
+        public ObservableCollection<ClientViewModel> Clients
         {
             get
             {
-                return new ObservableCollection<Client>(ClientService.Current.Clients);
+                return
+                    new ObservableCollection<ClientViewModel>
+                    (ClientService
+                        .Current.Clients.Select(c => new ClientViewModel(c)).ToList());
             }
         }
 
@@ -32,6 +32,22 @@ namespace PracticePanther.MAUI.ViewModels
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void Delete()
+        {
+            if (SelectedClient != null)
+            {
+                ClientService.Current.Delete(SelectedClient.Id);
+                SelectedClient = null;
+                NotifyPropertyChanged(nameof(Clients));
+                NotifyPropertyChanged(nameof(SelectedClient));
+            }
+        }
+
+        public void RefreshClientList()
+        {
+            NotifyPropertyChanged(nameof(Clients));
         }
 
 

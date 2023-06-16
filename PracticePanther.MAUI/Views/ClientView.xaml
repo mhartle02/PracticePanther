@@ -3,25 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.ClientView"
              Title="ClientView"
-             Background="#95afc0"      
+             Background="#95afc0"
+             Padding="20"
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="320" />
+            <RowDefinition Height="250" />
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="263"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="265"/>
-            <ColumnDefinition/>
+            
         </Grid.ColumnDefinitions>
+
 
         <ListView
             Grid.Row="0"
             Grid.Column="0"
+            Grid.ColumnSpan="3"
             ItemsSource="{Binding Path=Clients}"
-            />
+            >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="12*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Path=Display}"/>
+                        <Button Grid.Column="1"
+                            Text="Delete"
+                            TextColor="White"
+                            Background="#eb4d4b"
+                            Command="{Binding Path=DeleteCommand}"
+                            CommandParameter="{Binding}"
+                            Clicked="DeleteClicked"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        </ListView>
 
 
         <Button BackgroundColor="#535c68"

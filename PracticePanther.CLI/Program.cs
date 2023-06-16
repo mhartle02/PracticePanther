@@ -29,7 +29,7 @@ namespace PracticePanther
                         MenuInput = Convert.ToInt32(Console.ReadLine());
                         if (MenuInput == 1)
                         {
-                            //create client
+                            //create clients
                             Console.Write("Id: ");
                             var id = int.Parse(Console.ReadLine() ?? "0");
 

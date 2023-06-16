@@ -41,6 +41,15 @@ namespace PracticePanther.Library.Services
             };
         }
 
+        public void Delete(int id)
+        {
+            var clientToDelete = Clients.FirstOrDefault(c => c.Id == id);
+            if (clientToDelete != null)
+            {
+                Clients.Remove(clientToDelete);
+            }
+        }
+
 
 
 
@@ -82,7 +91,7 @@ namespace PracticePanther.Library.Services
         //public List<Client> Search (string query)
         //{
 
-            
+
         //    return CurrentClients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
         //}
 
@@ -113,7 +122,7 @@ namespace PracticePanther.Library.Services
         //    var ClientToRemove = Get(id);
         //    if (ClientToRemove != null)
         //    {
-        //        CurrentClients.Remove(ClientToRemove);
+        //        Clients.Remove(ClientToRemove);
         //    }
         //}
         //public void Delete(Client c)
