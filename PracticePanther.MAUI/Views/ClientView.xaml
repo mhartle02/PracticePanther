@@ -6,26 +6,52 @@
              Background="#95afc0"
              Padding="20"
              >
-    <Grid>
+    <Grid RowSpacing="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
             <RowDefinition Height="250" />
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="263"/>
-            <ColumnDefinition/>
-            
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
 
-        <ListView
-            Grid.Row="0"
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry  Grid.Column="0"
+                Background="#95afc0"
+                />
+            <Button Text="Search"
+                    Grid.Column="1"
+                    Background="#686de0"
+                    TextColor="White"
+                    />
+
+            <Button Text="Add"
+                    Background="#6ab04c"
+                    TextColor="White"
+                    Grid.Column="2"              
+            />
+        </Grid>
+
+
+
+            <ListView
+            Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             ItemsSource="{Binding Path=Clients}"
             >
+
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -50,7 +76,7 @@
 
 
         <Button BackgroundColor="#535c68"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="1"
                 TextColor="White"
                 Text="Back"
