@@ -6,27 +6,38 @@
              Background="#95afc0"      
              >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="320" />
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="700"/>
+            <ColumnDefinition Width="265"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="75" />
-        </Grid.RowDefinitions>
-        
-        <Button
-            BackgroundColor="#535c68"
-            TextColor="White"
+        <ListView
+            Grid.Row="0"
             Grid.Column="0"
-            Grid.Row="1"
-            Text="Back"
-            Clicked="GoBack">
-            
-        </Button>        
-        
-    </Grid>
+            ItemsSource="{Binding Path=Clients}"
+            />
+
+
+        <Button BackgroundColor="#535c68"
+                Grid.Row="1"
+                Grid.Column="1"
+                TextColor="White"
+                Text="Back"
+                Clicked="GoBack"/>
+      
+
+
+
+
+
+     </Grid>
+
 
 
 

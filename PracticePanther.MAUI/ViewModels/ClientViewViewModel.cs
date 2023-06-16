@@ -23,7 +23,7 @@ namespace PracticePanther.MAUI.ViewModels
         {
             get
             {
-                return new ObservableCollection<Client>(ClientService.Current.currentclients);
+                return new ObservableCollection<Client>(ClientService.Current.Clients);
             }
         }
 

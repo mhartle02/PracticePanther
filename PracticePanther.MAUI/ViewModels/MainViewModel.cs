@@ -11,44 +11,44 @@ using System.Threading.Tasks;
 
 namespace PracticePanther.MAUI.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
-    {
-        public ObservableCollection <Client> Clients
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Query))
-                {
-                    return new ObservableCollection<Client>(ClientService.Current.currentclients);
-                }
-                return new ObservableCollection<Client>(ClientService.Current.Search(Query));
+    //public class MainViewModel : INotifyPropertyChanged
+    //{
+    //    public ObservableCollection <Client> Clients
+    //    {
+    //        get
+    //        {
+    //            if (string.IsNullOrEmpty(Query))
+    //            {
+    //                return new ObservableCollection<Client>(ClientService.Current.currentclients);
+    //            }
+    //            return new ObservableCollection<Client>(ClientService.Current.Search(Query));
                 
-            }
-        }
+    //        }
+    //    }
 
-        public string Query { get; set; }
+    //    public string Query { get; set; }
 
-        public void Search()
-        {
-            NotifyPropertyChanged("Clients");
-        }
-        public void Delete()
-        {
-            if (SelectedClient == null)
-            {
-                return;
-            }
-            ClientService.Current.Delete(SelectedClient);
-            NotifyPropertyChanged("Clients");
-        }
+    //    public void Search()
+    //    {
+    //        NotifyPropertyChanged("Clients");
+    //    }
+    //    public void Delete()
+    //    {
+    //        if (SelectedClient == null)
+    //        {
+    //            return;
+    //        }
+    //        ClientService.Current.Delete(SelectedClient);
+    //        NotifyPropertyChanged("Clients");
+    //    }
 
-        public Client SelectedClient { get; set; }
+    //    public Client SelectedClient { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    //    public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+    //    private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+    //    {
+    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    //    }
+    //}
 }

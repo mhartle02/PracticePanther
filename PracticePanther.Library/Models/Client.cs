@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using PracticePanther.Library.Models;
 
 namespace PracticePanther.Library.Models
 {
     public class Client
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
-        public DateTime OpenDate { get; set; }
-        public DateTime CloseDate { get; set; }
-        public bool IsActive { get; set; }
-        public string Notes { get; set; }
 
+        public List<Project> Projects { get; set; }
 
-        public Client()
+        public string Display
         {
-            Name = string.Empty;
-            Notes = string.Empty;
+            get
+            {
+                return ToString();
+            }
         }
 
         public override string ToString()
         {
-            return $"{Id}. {Name}";
-                //(Open Date: {OpenDate} Close Date: {CloseDate}) Notes: {Notes}";
+            return $"{Id} {Name}";
         }
-       
-    } 
+    }
 }

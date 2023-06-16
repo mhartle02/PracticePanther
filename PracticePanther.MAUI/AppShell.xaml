@@ -10,13 +10,12 @@
     >
 
     <ShellContent
-        
         Title="PracticePanther"  
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
     <ShellContent
-        Title="Clients"
+        Title="Client Management"
         ContentTemplate="{DataTemplate local2:ClientView}"
         Route="Clients" />
 
