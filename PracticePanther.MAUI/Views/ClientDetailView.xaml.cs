@@ -9,4 +9,15 @@ public partial class ClientDetailView : ContentPage
 		InitializeComponent();
 		BindingContext = new ClientViewModel();
 	}
+
+    private void OkClicked(object sender, EventArgs e)
+    {
+		(BindingContext as ClientViewModel).Add();
+		Shell.Current.GoToAsync("//Clients");
+    }
+
+    private void GoBack(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//Clients");
+    }
 }

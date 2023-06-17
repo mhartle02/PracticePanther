@@ -24,4 +24,9 @@ public partial class ClientView : ContentPage
     {
         (BindingContext as ClientViewViewModel).RefreshClientList();
     }
+
+    private void OnArrived(object sender, NavigatedToEventArgs e)
+    {
+        (BindingContext as ClientViewViewModel).RefreshClientList();
+    }
 }

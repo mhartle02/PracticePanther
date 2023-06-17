@@ -5,6 +5,7 @@ namespace PracticePanther.Library.Services
 {
     public class ClientService
     {
+        int ClientId = 0;
         public List<Client> Clients
         {
             get
@@ -32,6 +33,8 @@ namespace PracticePanther.Library.Services
         {
             clients = new List<Client>
             {
+               
+
                 new Client { Id = 1, Name = "Client 1"},
                 new Client { Id = 2, Name = "Client 2"},
                 new Client { Id = 3, Name = "Client 3"},
@@ -48,6 +51,33 @@ namespace PracticePanther.Library.Services
             {
                 Clients.Remove(clientToDelete);
             }
+        }
+
+        public void Add(Client c)
+        {
+            if (c.Id == 0)
+            {
+                //add
+                c.Id = LastId + 1;
+            }
+
+            Clients.Add(c);
+        }
+
+        private int LastId
+        {
+            get
+            {
+                return Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
+            }
+        }
+
+
+        public List<Client> Search(string query)
+        {
+
+
+            return Clients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
         }
 
 

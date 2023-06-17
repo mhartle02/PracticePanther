@@ -5,11 +5,12 @@
              Title="New Client"
              Background="#95afc0">
              
-    <VerticalStackLayout>
-        <Grid Padding="20" ColumnSpacing ="20">
+
+        <Grid Padding="20" ColumnSpacing ="20" RowSpacing="200">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="688"/>
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -28,10 +29,38 @@
             <Entry Grid.Column="1"
                    Background="White"
                    TextColor="Black"
-                   
+                   Text="{Binding Path=Model.Name}"
                    />
+            <Button Text="OK"
+                    Grid.Column="2"
+                    BackgroundColor="#6ab04c"
+                    TextColor="White"
+                    Clicked="OkClicked" />
+
+        <Grid Grid.Row="2" Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="44"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="263"/>
+                <ColumnDefinition/>
+               
+            </Grid.ColumnDefinitions>
+
+            <Button BackgroundColor="#535c68"
+                Grid.Row="2"
+                Grid.Column="1"
+                TextColor="White"
+                Text="Back"
+                Clicked="GoBack"/>
+        </Grid>
+
         </Grid>
 
 
-    </VerticalStackLayout>
+  
 </ContentPage>
