@@ -5,7 +5,6 @@ namespace PracticePanther.Library.Services
 {
     public class ClientService
     {
-        int ClientId = 0;
         public List<Client> Clients
         {
             get

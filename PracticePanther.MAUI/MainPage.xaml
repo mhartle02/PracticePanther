@@ -11,7 +11,7 @@
             Padding="340,0"
             VerticalOptions="Center">
             <Button Text="Manage Clients &amp; Projects" Clicked="ClientsClicked" Background="#6ab04c" TextColor="White"></Button>
-            <Button Text="Manage Employees" Background="#eb4d4b" TextColor="White"></Button>
+            <Button Text="Manage Employees" Background="#eb4d4b" TextColor="White" Clicked="EmployeeClicked"></Button>
             <Button Text="Enter Time" Background="#686de0" TextColor="White"></Button>
         </VerticalStackLayout>
     </ScrollView>
