@@ -12,9 +12,10 @@ using PracticePanther.Library.Services;
 
 namespace PracticePanther.MAUI.ViewModels
 {
-    public class ClientViewModel: INotifyPropertyChanged
+    public class ClientViewModel
     {
         public Client Model { get; set; }
+
         public string Display
         {
             get
@@ -22,6 +23,7 @@ namespace PracticePanther.MAUI.ViewModels
                 return Model.ToString() ?? string.Empty;
             }
         }
+
         public ICommand DeleteCommand { get; private set; }
         public void ExecuteDelete(int id)
         {
@@ -46,21 +48,5 @@ namespace PracticePanther.MAUI.ViewModels
         {
             ClientService.Current.Add(Model);
         }
-
-        public void Search()
-        {
-            NotifyPropertyChanged("Clients");
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-
-
     }
 }

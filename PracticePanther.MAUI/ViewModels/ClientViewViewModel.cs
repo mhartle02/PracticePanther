@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PracticePanther.MAUI.ViewModels
 {
-    public class ClientViewViewModel: INotifyPropertyChanged
+    public class ClientViewViewModel : INotifyPropertyChanged
     {
         public Client SelectedClient { get; set; }
 
@@ -23,7 +23,8 @@ namespace PracticePanther.MAUI.ViewModels
                 return
                     new ObservableCollection<ClientViewModel>
                     (ClientService
-                        .Current.Clients.Select(c => new ClientViewModel(c)).ToList());
+                        .Current.Clients
+                        .Select(c => new ClientViewModel(c)).ToList());
             }
         }
 
@@ -50,7 +51,6 @@ namespace PracticePanther.MAUI.ViewModels
             NotifyPropertyChanged(nameof(Clients));
         }
 
-
     }
-
 }
+

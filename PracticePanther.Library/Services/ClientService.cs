@@ -23,23 +23,20 @@ namespace PracticePanther.Library.Services
             {
                 if (instance == null)
                 {
-                    instance = new ClientService();
+                    instance =  new ClientService();
                 }
-                return instance;
+            
+                    instance = new ClientService();
+                
+                    
+                    return instance;
             }
         }
         private ClientService()
         {
-            clients = new List<Client>
+            clients = new List<Client>();
             {
-               
 
-                new Client { Id = 1, Name = "Client 1"},
-                new Client { Id = 2, Name = "Client 2"},
-                new Client { Id = 3, Name = "Client 3"},
-                new Client { Id = 4, Name = "Client 4"},
-                new Client { Id = 5, Name = "Client 5"},
-                new Client { Id = 6, Name = "Client 6"},
             };
         }
 
@@ -70,14 +67,8 @@ namespace PracticePanther.Library.Services
                 return Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
             }
         }
-
-
-        public List<Client> Search(string query)
-        {
-
-
-            return Clients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
-        }
+    }
+}
 
 
 
@@ -159,7 +150,4 @@ namespace PracticePanther.Library.Services
         //    Delete(c.Id);
         //}
 
-
-    }
-}
 

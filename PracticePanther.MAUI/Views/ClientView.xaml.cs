@@ -7,7 +7,7 @@ public partial class ClientView : ContentPage
     public ClientView()
     {
         InitializeComponent();
-        BindingContext = new ClientViewViewModel();
+        //BindingContext = new ClientViewViewModel();
 
     }
 
