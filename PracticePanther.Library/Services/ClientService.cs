@@ -25,9 +25,6 @@ namespace PracticePanther.Library.Services
                 {
                     instance =  new ClientService();
                 }
-            
-                    instance = new ClientService();
-                
                     
                     return instance;
             }

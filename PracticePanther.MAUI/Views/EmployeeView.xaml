@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.EmployeeView"
              Background="#95afc0"
+             NavigatedTo="OnArrived"
              Padding="20"
              Title="Employees">
 
@@ -42,6 +43,7 @@
                     Background="#6ab04c"
                     TextColor="White"
                     Grid.Column="2"
+                    Clicked="AddClicked"
                     
             />
         </Grid>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PracticePanther.MAUI.Views.EmployeeDetailView"
+             Title="New Employee"
+             Background="#95afc0">
+
+
+    <Grid Padding="20" ColumnSpacing ="20" RowSpacing="200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="688"/>
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0"
+            Grid.Row="0"
+            FontSize="23"
+            Text="Name"
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+             
+                     />
+        <Entry Grid.Column="1"
+                   Background="White"
+                   TextColor="Black"
+                   Text="{Binding Path=Model.Name}"
+                   />
+        <Button Text="OK"
+                    Grid.Column="2"
+                    BackgroundColor="#6ab04c"
+                    TextColor="White"
+                    Clicked="OkClicked" />
+
+        <Grid Grid.Row="2" Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="44"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="263"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <Button BackgroundColor="#535c68"
+                Grid.Row="2"
+                Grid.Column="1"
+                TextColor="White"
+                Text="Back"
+                Clicked="GoBack"/>
+        </Grid>
+
+    </Grid>
+
+
+
+</ContentPage>
