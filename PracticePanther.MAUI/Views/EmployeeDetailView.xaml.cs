@@ -3,7 +3,7 @@ using PracticePanther.MAUI.ViewModels;
 
 namespace PracticePanther.MAUI.Views;
 
-[QueryProperty(nameof(EmployeeId), "clientId")]
+[QueryProperty(nameof(EmployeeId), "EmployeeId")]
 public partial class EmployeeDetailView : ContentPage
 {
 
@@ -17,7 +17,7 @@ public partial class EmployeeDetailView : ContentPage
 
     private void OkClicked(object sender, EventArgs e)
     {
-        (BindingContext as EmployeeViewModel).Add();
+        (BindingContext as EmployeeViewModel).AddOrUpdate();
         Shell.Current.GoToAsync("//Employee");
     }
 
@@ -28,8 +28,7 @@ public partial class EmployeeDetailView : ContentPage
 
     private void OnArriving(object sender, NavigatedToEventArgs e)
     {
-        var myId = EmployeeId;
-        BindingContext = new EmployeeViewModel();
+        BindingContext = new EmployeeViewModel(EmployeeId);
 
     }
 }

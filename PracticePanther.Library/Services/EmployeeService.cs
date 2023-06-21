@@ -56,6 +56,11 @@ namespace PracticePanther.Library.Services
             Employees.Add(e);
         }
 
+        public Employee? Get(int id)
+        {
+            return Employees.FirstOrDefault(e => e.Id == id);
+        }
+
         private int LastId
         {
             get
@@ -70,6 +75,16 @@ namespace PracticePanther.Library.Services
 
 
             return Employees.Where(e => e.Name.ToUpper().Contains(query.ToUpper())).ToList();
+        }
+
+        public void AddOrUpdate(Employee e)
+        {
+            if (e.Id == 0)
+            {
+                //add
+                e.Id = LastId + 1;
+                Employees.Add(e);
+            }
         }
     }
 }

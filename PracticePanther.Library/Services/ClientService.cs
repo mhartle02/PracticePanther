@@ -23,10 +23,10 @@ namespace PracticePanther.Library.Services
             {
                 if (instance == null)
                 {
-                    instance =  new ClientService();
+                    instance = new ClientService();
                 }
-                    
-                    return instance;
+
+                return instance;
             }
         }
         private ClientService()
@@ -57,6 +57,10 @@ namespace PracticePanther.Library.Services
             Clients.Add(c);
         }
 
+        public Client? Get(int id)
+        {
+            return Clients.FirstOrDefault(c => c.Id == id);
+        }
         private int LastId
         {
             get
@@ -70,6 +74,16 @@ namespace PracticePanther.Library.Services
 
 
             return Clients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
+        }
+
+        public void AddOrUpdate(Client c)
+        {
+            if (c.Id == 0)
+            {
+                //add
+                c.Id = LastId + 1;
+                Clients.Add(c);
+            }
         }
     }
 }

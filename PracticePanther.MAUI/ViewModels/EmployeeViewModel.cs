@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PracticePanther.MAUI.ViewModels
 {
-    class EmployeeViewModel: INotifyPropertyChanged
+    public class EmployeeViewModel
     {
         public Employee Model { get; set; }
+
         public string Display
         {
             get
@@ -21,46 +21,56 @@ namespace PracticePanther.MAUI.ViewModels
                 return Model.ToString() ?? string.Empty;
             }
         }
+
         public ICommand DeleteCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
+
         public void ExecuteDelete(int id)
         {
             EmployeeService.Current.Delete(id);
         }
 
+        public void ExecuteEdit(int id)
+        {
+            Shell.Current.GoToAsync($"//EmployeeDetail?employeeId={id}");
+        }
+
+        private void SetupCommands()
+        {
+            DeleteCommand = new Command(
+                (e) => ExecuteDelete((e as EmployeeViewModel).Model.Id));
+            EditCommand = new Command(
+                    (e) => ExecuteEdit((e as EmployeeViewModel).Model.Id));
+        }
+
         public EmployeeViewModel(Employee employee)
         {
             Model = employee;
-            DeleteCommand = new Command(
-                (e) => ExecuteDelete((e as EmployeeViewModel).Model.Id));
+            SetupCommands();
+        }
+
+        public EmployeeViewModel(int employeeId)
+        {
+            if(employeeId == 0)
+            {
+                Model = new Employee();
+            }
+            else
+            {
+                Model = EmployeeService.Current.Get(employeeId);
+            }
+            SetupCommands();
         }
 
         public EmployeeViewModel()
         {
             Model = new Employee();
-            DeleteCommand = new Command(
-                (e) => ExecuteDelete((e as EmployeeViewModel).Model.Id));
+            SetupCommands();
         }
 
-        public void Add()
+        public void AddOrUpdate()
         {
-            EmployeeService.Current.Add(Model);
+            EmployeeService.Current.AddOrUpdate(Model);
         }
-
-        public void Search()
-        {
-            NotifyPropertyChanged("Employees");
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-
-
     }
 }
-

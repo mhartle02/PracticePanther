@@ -1,14 +1,11 @@
-﻿using System;
+﻿using PracticePanther.Library.Models;
+using PracticePanther.Library.Services;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using PracticePanther.Library.Models;
-using PracticePanther.Library.Services;
 
 namespace PracticePanther.MAUI.ViewModels
 {
@@ -24,9 +21,9 @@ namespace PracticePanther.MAUI.ViewModels
             }
         }
 
+        public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
 
-        public ICommand DeleteCommand { get; private set; }
         public void ExecuteDelete(int id)
         {
             ClientService.Current.Delete(id);
@@ -37,30 +34,42 @@ namespace PracticePanther.MAUI.ViewModels
             Shell.Current.GoToAsync($"//ClientDetail?clientId={id}");
         }
 
-        public ClientViewModel(Client client)
+        private void SetupCommands()
         {
-            Model = client;
             DeleteCommand = new Command(
                 (c) => ExecuteDelete((c as ClientViewModel).Model.Id));
             EditCommand = new Command(
-                (c) => ExecuteEdit((c as ClientViewModel).Model.Id));
+                    (c) => ExecuteEdit((c as ClientViewModel).Model.Id));
+        }
+
+        public ClientViewModel(Client client)
+        {
+            Model = client;
+            SetupCommands();
+        }
+
+        public ClientViewModel(int clientId)
+        {
+            if (clientId == 0)
+            {
+                Model = new Client();
+            }
+            else
+            {
+                Model = ClientService.Current.Get(clientId);
+            }
+            SetupCommands();
         }
 
         public ClientViewModel()
         {
             Model = new Client();
-            DeleteCommand = new Command(
-                (c) => ExecuteDelete((c as ClientViewModel).Model.Id));
-
-            EditCommand = new Command(
-                (c) => ExecuteEdit((c as ClientViewModel).Model.Id));
-                
+            SetupCommands();
         }
 
-        public void Add()
+        public void AddOrUpdate()
         {
-            ClientService.Current.Add(Model);
+            ClientService.Current.AddOrUpdate(Model);
         }
-
     }
 }

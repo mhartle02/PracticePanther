@@ -1,23 +1,23 @@
 using PracticePanther.Library.Models;
+using PracticePanther.Library.Services;
 using PracticePanther.MAUI.ViewModels;
+
 
 namespace PracticePanther.MAUI.Views;
 
 [QueryProperty(nameof(ClientId), "clientId")]
 public partial class ClientDetailView : ContentPage
 {
-
     public int ClientId { get; set; }
-	public ClientDetailView()
-	{
-		InitializeComponent();
-
-	}
+    public ClientDetailView()
+    {
+        InitializeComponent();
+    }
 
     private void OkClicked(object sender, EventArgs e)
     {
-		(BindingContext as ClientViewModel).Add();
-		Shell.Current.GoToAsync("//Clients");
+        (BindingContext as ClientViewModel).AddOrUpdate();
+        Shell.Current.GoToAsync("//Clients");
     }
 
     private void GoBack(object sender, EventArgs e)
@@ -27,8 +27,6 @@ public partial class ClientDetailView : ContentPage
 
     private void OnArriving(object sender, NavigatedToEventArgs e)
     {
-        var myId = ClientId;
-        BindingContext = new ClientViewModel();
-
+        BindingContext = new ClientViewModel(ClientId);
     }
 }

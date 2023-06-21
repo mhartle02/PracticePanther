@@ -30,4 +30,9 @@ public partial class EmployeeView : ContentPage
         (BindingContext as EmployeeViewViewModel).RefreshEmployeeList();
     }
 
+    private void EditClicked(object sender, EventArgs e)
+    {
+        (BindingContext as EmployeeViewViewModel).RefreshEmployeeList();
+    }
+
 }
