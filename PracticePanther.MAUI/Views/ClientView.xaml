@@ -36,20 +36,22 @@
             <Entry  Grid.Column="0"
                 Background="white"
                 TextColor="Black"
+                Text="{Binding Path=Query}"
                 />
             <Button Text="Search"
                     Grid.Column="1"
                     Background="#686de0"
                     TextColor="White"
-     
-                    />
+                    Clicked="SearchClicked"/>
 
-            <Button Text="Add"
+            
+
+                <Button Text="Add"
                     Background="#6ab04c"
                     TextColor="White"
                     Grid.Column="2"
                     Clicked="AddClicked"
-            />
+                    />
         </Grid>
 
 
@@ -75,7 +77,10 @@
                             <Button Grid.Column="1"
                             Text="Edit"
                             TextColor="White"
-                            Background="#686de0"/>
+                            Background="#686de0"
+                            Command="{Binding Path= EditCommand}"
+                            CommandParameter="{Binding}"
+                            Clicked="EditClicked"/>
                             <Button Grid.Column="2"
                             Text="Delete"
                             TextColor="White"

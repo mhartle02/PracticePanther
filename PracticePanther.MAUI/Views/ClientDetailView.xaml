@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.ClientDetailView"
              Title="New Client"
-             Background="#95afc0">
+             Background="#95afc0"
+             NavigatedTo="OnArriving">
              
 
         <Grid Padding="20" ColumnSpacing ="20" RowSpacing="200">

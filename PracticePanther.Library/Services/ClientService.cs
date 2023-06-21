@@ -31,7 +31,7 @@ namespace PracticePanther.Library.Services
         }
         private ClientService()
         {
-            clients = new List<Client>();
+            clients = new List<Client>
             {
 
             };
@@ -63,6 +63,13 @@ namespace PracticePanther.Library.Services
             {
                 return Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
             }
+        }
+
+        public List<Client> Search(string query)
+        {
+
+
+            return Clients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
         }
     }
 }

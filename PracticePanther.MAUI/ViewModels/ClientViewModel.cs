@@ -24,10 +24,17 @@ namespace PracticePanther.MAUI.ViewModels
             }
         }
 
+        public ICommand EditCommand { get; private set; }
+
         public ICommand DeleteCommand { get; private set; }
         public void ExecuteDelete(int id)
         {
             ClientService.Current.Delete(id);
+        }
+
+        public void ExecuteEdit(int id)
+        {
+            Shell.Current.GoToAsync($"//ClientDetail?clientId={id}");
         }
 
         public ClientViewModel(Client client)
@@ -35,6 +42,8 @@ namespace PracticePanther.MAUI.ViewModels
             Model = client;
             DeleteCommand = new Command(
                 (c) => ExecuteDelete((c as ClientViewModel).Model.Id));
+            EditCommand = new Command(
+                (c) => ExecuteEdit((c as ClientViewModel).Model.Id));
         }
 
         public ClientViewModel()
@@ -42,11 +51,16 @@ namespace PracticePanther.MAUI.ViewModels
             Model = new Client();
             DeleteCommand = new Command(
                 (c) => ExecuteDelete((c as ClientViewModel).Model.Id));
+
+            EditCommand = new Command(
+                (c) => ExecuteEdit((c as ClientViewModel).Model.Id));
+                
         }
 
         public void Add()
         {
             ClientService.Current.Add(Model);
         }
+
     }
 }
