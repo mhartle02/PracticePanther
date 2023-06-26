@@ -10,57 +10,54 @@ namespace PracticePanther.Library.Services
 {
     public class ProjectService
     {
-        private static object _lock = new object();
+        private List<Project> projects;
+        public List<Project> Projects
+        {
+            get
+            {
+                return projects;
+            }
+        }
+
         private static ProjectService? instance;
         public static ProjectService Current
         {
             get
             {
-                lock (_lock)
+                if (instance == null)
                 {
-                    if (instance == null)
-                    {
-                        instance = new ProjectService();
-                    }
+                    instance = new ProjectService();
                 }
+
                 return instance;
             }
-
         }
 
-        private List<Project> CurrentProjects;
         private ProjectService()
         {
-            CurrentProjects = new List<Project>();
+            projects = new List<Project>();
         }
 
         public Project? Get(int id)
         {
-            return CurrentProjects.FirstOrDefault(c => c.Id == id);
+            return Projects.FirstOrDefault(p => p.Id == id);
         }
 
-        public void Add(Project? project)
+        public void Add(Project project)
         {
-            if (project != null)
+            if (project.Id == 0)
             {
-                CurrentProjects.Add(project);
+                project.Id = LastId + 1;
             }
+            projects.Add(project);
         }
 
-        public void Read()
+        private int LastId
         {
-            CurrentProjects.ForEach(Console.WriteLine);
-        }
-
-        public void Delete(int id)
-        {
-            var ProjectToRemove = Get(id);
-            if (ProjectToRemove != null)
+            get
             {
-                CurrentProjects.Remove(ProjectToRemove);
+                return Projects.Any() ? Projects.Select(c => c.Id).Max() : 0;
             }
-
         }
     }
-
 }
