@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Services;
 using System.Windows.Input;
+using PracticePanther.MAUI.Views;
 
 namespace PracticePanther.MAUI.ViewModels
 {
