@@ -1,5 +1,8 @@
+using PracticePanther.MAUI.ViewModels;
+
 namespace PracticePanther.MAUI.Views;
 
+[QueryProperty(nameof(ClientId), "clientId")]
 [QueryProperty(nameof(ClientId), "clientId")]
 public partial class ProjectDetailView : ContentPage
 {
@@ -13,9 +16,4 @@ public partial class ProjectDetailView : ContentPage
     {
         BindingContext = new ProjectViewModel(ClientId);
     }
-}{
-	public ProjectDetailView()
-	{
-		InitializeComponent();
-	}
 }

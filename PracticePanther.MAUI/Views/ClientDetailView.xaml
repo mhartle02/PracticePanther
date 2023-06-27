@@ -5,63 +5,54 @@
              Title="New Client"
              Background="#95afc0"
              NavigatedTo="OnArriving">
-             
 
-        <Grid Padding="20" ColumnSpacing ="20" RowSpacing="200">
+
+    <VerticalStackLayout>
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="688"/>
-                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="11*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="44"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
             <Label Grid.Column="0"
-            Grid.Row="0"
-            FontSize="23"
-            Text="Name"
-            HorizontalOptions="Center"
-            FontAttributes="Bold"
-             
-                     />
-            <Entry Grid.Column="1"
-                   Background="White"
-                   TextColor="Black"
-                   Text="{Binding Path=Model.Name}"
-                   />
-            <Button Text="OK"
-                    Grid.Column="2"
-                    BackgroundColor="#6ab04c"
-                    TextColor="White"
-                    Clicked="OkClicked" />
-
-        <Grid Grid.Row="2" Grid.Column="1">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="44"/>
-            </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="263"/>
-                <ColumnDefinition/>
-               
-            </Grid.ColumnDefinitions>
-
-            <Button BackgroundColor="#535c68"
-                Grid.Row="2"
-                Grid.Column="1"
-                TextColor="White"
-                Text="Back"
-                Clicked="GoBack"/>
+            Padding="10"
+            Text="Name" />
+            <Entry Grid.Column="1" Text="{Binding Path=Model.Name}"/>
         </Grid>
-
+        <Grid Padding="5" Margin="5">
+            <Label Text="Projects:"></Label>
         </Grid>
+        <Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Column="0"></Entry>
+                <Button Grid.Column="1" Text="Search"></Button>
+                <Button Grid.Column="2" Text="Add Project" Command="{Binding AddProjectCommand}"></Button>
+            </Grid>
+        </Grid>
+        <ListView
+            ItemsSource="{Binding Projects}"
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
+                            <Button Grid.Column="1" Text="Timer" Command="{Binding TimerCommand}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="OK" Clicked="OkClicked"/>
+        <Button Text="Back" Clicked="GoBack"/>
 
-
-  
+    </VerticalStackLayout>
 </ContentPage>
