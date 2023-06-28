@@ -17,6 +17,5 @@
             <Entry Grid.Column="1" Background="White" TextColor="Black" Text="{Binding Path=Model.Name}"/>
         </Grid>
         <Button Text="OK" Command="{Binding AddCommand}" BackgroundColor="#6ab04c" TextColor="White"/>
-        <Button Text="Back" Clicked="BackClicked" TextColor="White" BackgroundColor="#535c68"/>
     </VerticalStackLayout>
 </ContentPage>
