@@ -28,10 +28,6 @@ public partial class ClientDetailView : ContentPage
     private void OnArriving(object sender, NavigatedToEventArgs e)
     {
         BindingContext = new ClientViewModel(ClientId);
-    }
-
-    private void AddClicked(object sender, EventArgs e)
-    {
-        Shell.Current.GoToAsync("//ProjectDetail");
+        (BindingContext as ClientViewModel).RefreshProjects();
     }
 }

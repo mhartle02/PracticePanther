@@ -9,12 +9,26 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PracticePanther.MAUI.ViewModels
 {
     public class ClientViewViewModel : INotifyPropertyChanged
     {
         public Client SelectedClient { get; set; }
+
+        public ICommand SearchCommand { get; private set; }
+
+        public string Query { get; set; }
+
+        public void ExecuteSearchCommand()
+        {
+            NotifyPropertyChanged(nameof(Clients));
+        }
+        public ClientViewViewModel()
+        {
+            SearchCommand = new Command(ExecuteSearchCommand);
+        }
 
         public ObservableCollection<ClientViewModel> Clients
         {
@@ -23,7 +37,7 @@ namespace PracticePanther.MAUI.ViewModels
                 return
                     new ObservableCollection<ClientViewModel>
                     (ClientService
-                        .Current.Clients
+                        .Current.Search(Query ?? string.Empty)
                         .Select(c => new ClientViewModel(c)).ToList());
             }
         }
@@ -51,13 +65,6 @@ namespace PracticePanther.MAUI.ViewModels
             NotifyPropertyChanged(nameof(Clients));
         }
 
-
-
-        public string Query { get; set; }
-        public void Search()
-        {
-            NotifyPropertyChanged("Clients");
-        }
     }
 }
 
