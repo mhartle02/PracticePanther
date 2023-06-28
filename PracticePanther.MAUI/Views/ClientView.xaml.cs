@@ -7,8 +7,12 @@ public partial class ClientView : ContentPage
     public ClientView()
     {
         InitializeComponent();
-        //BindingContext = new ClientViewViewModel();
+        BindingContext = new ClientViewViewModel();
+    }
 
+    private void DeleteClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ClientViewViewModel).RefreshClientList();
     }
 
     private void GoBack(object sender, EventArgs e)
@@ -20,24 +24,19 @@ public partial class ClientView : ContentPage
     {
         Shell.Current.GoToAsync("//ClientDetail");
     }
-    private void DeleteClicked(object sender, EventArgs e)
-    {
-        (BindingContext as ClientViewViewModel).RefreshClientList();
-    }
 
     private void OnArrived(object sender, NavigatedToEventArgs e)
     {
         (BindingContext as ClientViewViewModel).RefreshClientList();
     }
 
-    private void SearchClicked(object sender, EventArgs e)
-    {
-        (BindingContext as ClientViewViewModel).Search();
-
-    }
     private void EditClicked(object sender, EventArgs e)
     {
         (BindingContext as ClientViewViewModel).RefreshClientList();
     }
 
+    private void ProjectsClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ClientViewViewModel).RefreshClientList();
+    }
 }

@@ -14,7 +14,7 @@ namespace PracticePanther.MAUI.ViewModels
     {
         public Project Model { get; set; }
 
-        public ICommand AddProjectCommand { get; private set; }
+        public ICommand AddCommand { get; private set; }
         public ICommand TimerCommand { get; private set; }
 
         public string Display
@@ -46,7 +46,7 @@ namespace PracticePanther.MAUI.ViewModels
 
         public void SetupCommands()
         {
-            AddProjectCommand = new Command(ExecuteAdd);
+            AddCommand = new Command(ExecuteAdd);
             TimerCommand = new Command(ExecuteTimer);
         }
 

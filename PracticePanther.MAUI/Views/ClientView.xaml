@@ -41,12 +41,12 @@
             <Button Text="Search"
                     Grid.Column="1"
                     Background="#686de0"
-                    TextColor="White"
-                    Clicked="SearchClicked"/>
+                    TextColor="White" />
 
-            
 
-                <Button Text="Add"
+
+
+            <Button Text="Add"
                     Background="#6ab04c"
                     TextColor="White"
                     Grid.Column="2"
