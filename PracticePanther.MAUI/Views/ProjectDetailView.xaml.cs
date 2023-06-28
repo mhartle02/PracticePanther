@@ -16,4 +16,9 @@ public partial class ProjectDetailView : ContentPage
     {
         BindingContext = new ProjectViewModel(ClientId);
     }
+
+    private void BackClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//ClientDetail");
+    }
 }

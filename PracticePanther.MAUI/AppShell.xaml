@@ -34,6 +34,11 @@
         ContentTemplate="{DataTemplate local2:EmployeeDetailView}"
         Route="EmployeeDetail" />
 
+    <ShellContent
+        Title="ProjectDetail"
+        ContentTemplate="{DataTemplate local2:ProjectDetailView}"
+        Route="ProjectDetail" />
+
 
 
 </Shell>

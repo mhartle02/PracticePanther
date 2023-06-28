@@ -16,7 +16,7 @@
             <Label Grid.Column="0"
             Padding="10"
             Text="Name" />
-            <Entry Grid.Column="1" Text="{Binding Path=Model.Name}"/>
+            <Entry Grid.Column="1" Text="{Binding Path=Model.Name}" BackgroundColor="White" TextColor="Black"/>
         </Grid>
         <Grid Padding="5" Margin="5">
             <Label Text="Projects:"></Label>
@@ -28,9 +28,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Entry Grid.Column="0"></Entry>
-                <Button Grid.Column="1" Text="Search"></Button>
-                <Button Grid.Column="2" Text="Add Project" Command="{Binding AddProjectCommand}"></Button>
+                <Entry Grid.Column="0" BackgroundColor="White" TextColor="Black"></Entry>
+                <Button Grid.Column="1" Text="Search" BackgroundColor="#686de0" TextColor="White"></Button>
+                <Button Grid.Column="2" Text="Add Project" TextColor="White" BackgroundColor="#686de0" Clicked="AddClicked"></Button>
             </Grid>
         </Grid>
         <ListView
@@ -45,14 +45,14 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
-                            <Button Grid.Column="1" Text="Timer" Command="{Binding TimerCommand}"/>
+                            <Button Grid.Column="1" Text="Timer" BackgroundColor="#686de0" TextColor="White" Command="{Binding TimerCommand}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="OK" Clicked="OkClicked"/>
-        <Button Text="Back" Clicked="GoBack"/>
+        <Button Text="OK" BackgroundColor="#6ab04c" TextColor="White" Clicked="OkClicked"/>
+        <Button Text="Back" TextColor="White" BackgroundColor="#535c68" Clicked="GoBack"/>
 
     </VerticalStackLayout>
 </ContentPage>

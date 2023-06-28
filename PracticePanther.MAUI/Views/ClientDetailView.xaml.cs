@@ -29,4 +29,9 @@ public partial class ClientDetailView : ContentPage
     {
         BindingContext = new ClientViewModel(ClientId);
     }
+
+    private void AddClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//ProjectDetail");
+    }
 }
