@@ -7,14 +7,29 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Services;
 
 namespace PracticePanther.MAUI.ViewModels
 {
-    class EmployeeViewViewModel: INotifyPropertyChanged
+    public class EmployeeViewViewModel : INotifyPropertyChanged
     {
         public Employee SelectedEmployee { get; set; }
+
+        public ICommand SearchCommand { get; private set; }
+
+        public string Query { get; set; }
+
+        public void ExecuteSearchCommand()
+        {
+            NotifyPropertyChanged(nameof(Employees));
+        }
+
+        public EmployeeViewViewModel()
+        {
+            SearchCommand = new Command(ExecuteSearchCommand);
+        }
 
         public ObservableCollection<EmployeeViewModel> Employees
         {
@@ -23,13 +38,14 @@ namespace PracticePanther.MAUI.ViewModels
                 return
                     new ObservableCollection<EmployeeViewModel>
                     (EmployeeService
-                        .Current.Employees.Select(e => new EmployeeViewModel(e)).ToList());
+                        .Current.Search(Query ?? string.Empty)
+                        .Select(e => new EmployeeViewModel(e)).ToList());
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -38,7 +54,7 @@ namespace PracticePanther.MAUI.ViewModels
         {
             if (SelectedEmployee != null)
             {
-                ClientService.Current.Delete(SelectedEmployee.Id);
+                EmployeeService.Current.Delete(SelectedEmployee.Id);
                 SelectedEmployee = null;
                 NotifyPropertyChanged(nameof(Employees));
                 NotifyPropertyChanged(nameof(SelectedEmployee));
@@ -49,8 +65,6 @@ namespace PracticePanther.MAUI.ViewModels
         {
             NotifyPropertyChanged(nameof(Employees));
         }
-
-
     }
-
 }
+

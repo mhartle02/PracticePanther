@@ -28,37 +28,60 @@ namespace PracticePanther.Library.Services
                 return instance;
             }
         }
+
         private EmployeeService()
         {
             employees = new List<Employee>
             {
-
+                new Employee{ Id = 1, Name = "Employee 1"},
+                new Employee{ Id = 2, Name = "Employee 2"},
+                new Employee{ Id = 3, Name = "Employee 3"},
+                new Employee{ Id = 4, Name = "Employee 4"},
+                new Employee{ Id = 5, Name = "Employee 5"},
+                new Employee{ Id = 6, Name = "Employee 6"}
             };
-        }
-
-        public void Delete(int id)
-        {
-            var employeeToDelete = Employees.FirstOrDefault(c => c.Id == id);
-            if (employeeToDelete != null)
-            {
-                Employees.Remove(employeeToDelete);
-            }
         }
 
         public void Add(Employee e)
         {
             if (e.Id == 0)
             {
-                //add
+                // Add
                 e.Id = LastId + 1;
             }
 
             Employees.Add(e);
         }
 
+        public void Delete(int id)
+        {
+            var employeeToDelete = Employees.FirstOrDefault(e => e.Id == id);
+            if (employeeToDelete != null)
+            {
+                Employees.Remove(employeeToDelete);
+            }
+        }
+
+        public void AddOrUpdate(Employee e)
+        {
+            if (e.Id == 0)
+            {
+                // Add
+                e.Id = LastId + 1;
+                Employees.Add(e);
+            }
+        }
+
         public Employee? Get(int id)
         {
             return Employees.FirstOrDefault(e => e.Id == id);
+        }
+
+        public IEnumerable<Employee> Search(string query)
+        {
+            return Employees
+                .Where(e => e.Name.ToUpper()
+                    .Contains(query.ToUpper()));
         }
 
         private int LastId
@@ -68,23 +91,6 @@ namespace PracticePanther.Library.Services
                 return Employees.Any() ? Employees.Select(e => e.Id).Max() : 0;
             }
         }
-
-
-        public List<Employee> Search(string query)
-        {
-
-
-            return Employees.Where(e => e.Name.ToUpper().Contains(query.ToUpper())).ToList();
-        }
-
-        public void AddOrUpdate(Employee e)
-        {
-            if (e.Id == 0)
-            {
-                //add
-                e.Id = LastId + 1;
-                Employees.Add(e);
-            }
-        }
     }
 }
+

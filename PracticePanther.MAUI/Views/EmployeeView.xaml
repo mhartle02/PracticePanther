@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PracticePanther.MAUI.ViewModels"
              x:Class="PracticePanther.MAUI.Views.EmployeeView"
-             Background="#95afc0"
              NavigatedTo="OnArrived"
-             Padding="20"
-             Title="Employees">
+             Title="Employees"
+             Background="#95afc0"
+             Padding="20">
+    <ContentPage.BindingContext>
+        <vm:EmployeeViewViewModel/>
+    </ContentPage.BindingContext>
 
     <Grid RowSpacing="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="44"/>
-            <RowDefinition Height="250" />
+            <RowDefinition Height="250"/>
             <RowDefinition Height="44"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition />
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
 
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
@@ -28,35 +31,27 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <Entry  Grid.Column="0"
-                Background="white"
-                TextColor="Black"
-                />
+            <Entry Grid.Column="0"
+                   Background="white"
+                   TextColor="Black"
+                   Text="{Binding Path=Query}"/>
             <Button Text="Search"
                     Grid.Column="1"
                     Background="#686de0"
                     TextColor="White"
-     
-                    />
-
+                    Command="{Binding Path=SearchCommand}"/>
             <Button Text="Add"
                     Background="#6ab04c"
                     TextColor="White"
                     Grid.Column="2"
-                    Clicked="AddClicked"
-                    
-            />
+                    Clicked="AddClicked"/>
         </Grid>
 
-
-
-        <ListView
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            ItemsSource="{Binding Path=Employees}"
-            >
-
+        <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="3"
+                  ItemsSource="{Binding Path=Employees}"
+                  SelectedItem="{Binding Path=SelectedEmployee}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -68,26 +63,24 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="{Binding Path=Display}"/>
                             <Button Grid.Column="1"
-                            Text="Edit"
-                            TextColor="White"
-                            Background="#686de0"
-                            Command="{Binding Path= EditCommand}"
-                            CommandParameter="{Binding}"
-                            Clicked="EditClicked"/>
+                                    Text="Edit"
+                                    TextColor="White"
+                                    Background="#686de0"
+                                    Command="{Binding Path=EditCommand}"
+                                    CommandParameter="{Binding}"
+                                    Clicked="EditClicked"/>
                             <Button Grid.Column="2"
-                            Text="Delete"
-                            TextColor="White"
-                            Background="#eb4d4b"
-                            Command="{Binding Path=DeleteCommand}"
-                            CommandParameter="{Binding}"
-                            Clicked="DeleteClicked"/>
-                            
+                                    Text="Delete"
+                                    TextColor="White"
+                                    Background="#eb4d4b"
+                                    Command="{Binding Path=DeleteCommand}"
+                                    CommandParameter="{Binding}"
+                                    Clicked="DeleteClicked"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
 
         <Button BackgroundColor="#535c68"
                 Grid.Row="2"
@@ -95,15 +88,5 @@
                 TextColor="White"
                 Text="Back"
                 Clicked="GoBack"/>
-
-
-
-
-
-
     </Grid>
-
-
-
-
 </ContentPage>
