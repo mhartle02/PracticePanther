@@ -96,13 +96,20 @@ namespace PracticePanther.MAUI.ViewModels
         SetupCommands();
     }
 
-    public ClientViewModel(int clientId)
-    {
-        Model = ClientService.Current.Get(clientId);
-        SetupCommands();
-    }
+        public ClientViewModel(int clientId)
+        {
+            if (clientId == 0)
+            {
+                Model = new Client();
+            }
+            else
+            {
+                Model = ClientService.Current.Get(clientId);
+            }
+            SetupCommands();
+        }
 
-    public ClientViewModel()
+        public ClientViewModel()
     {
         Model = new Client();
         SetupCommands();

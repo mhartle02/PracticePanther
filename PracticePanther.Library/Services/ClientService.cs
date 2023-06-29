@@ -41,6 +41,17 @@ namespace PracticePanther.Library.Services
             };
         }
 
+        public void Add(Client c)
+        {
+            if (c.Id == 0)
+            {
+                //add
+                c.Id = LastId + 1;
+            }
+
+            Clients.Add(c);
+        }
+
         public void Delete(int id)
         {
             var clientToDelete = Clients.FirstOrDefault(c => c.Id == id);
