@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:PracticePanther.MAUI.ViewModels"
+             xmlns:c="clr-namespace:PracticePanther.MAUI.Controls"
              x:Class="PracticePanther.MAUI.Views.EmployeeView"
              NavigatedTo="OnArrived"
              Title="Employees"
@@ -31,15 +32,12 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <Entry Grid.Column="0"
-                   Background="white"
-                   TextColor="Black"
-                   Text="{Binding Path=Query}"/>
-            <Button Text="Search"
-                    Grid.Column="1"
-                    Background="#686de0"
-                    TextColor="White"
-                    Command="{Binding Path=SearchCommand}"/>
+            <c:SearchBarControl Grid.Column="0"
+                                QueryText="{Binding Query}"
+                                SearchButtonText="Search"
+                                BackgroundColor="White"
+                                
+                                SearchCommand="{Binding SearchCommand}"/>
             <Button Text="Add"
                     Background="#6ab04c"
                     TextColor="White"
