@@ -39,4 +39,5 @@ public partial class ClientView : ContentPage
     {
         (BindingContext as ClientViewViewModel).RefreshClientList();
     }
+
 }

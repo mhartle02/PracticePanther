@@ -33,7 +33,12 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
 
-            <Entry  Grid.Column="0"
+            <c:SearchBarControl Grid.Column="0"
+                                QueryText="{Binding Query}"
+                                SearchButtonText="Search"
+                                SearchCommand="{Binding SearchCommand}"/>
+
+            <!--<Entry  Grid.Column="0"
                 Background="white"
                 TextColor="Black"
                 Text="{Binding Path=Query}"
@@ -41,7 +46,7 @@
             <Button Text="Search"
                     Grid.Column="1"
                     Background="#686de0"
-                    TextColor="White" />
+                    TextColor="White" />-->
 
 
 
@@ -72,6 +77,7 @@
                             <ColumnDefinition Width="12*"/>
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Text="{Binding Path=Display}"/>
                             <Button Grid.Column="1"
@@ -81,7 +87,14 @@
                             Command="{Binding Path= EditCommand}"
                             CommandParameter="{Binding}"
                             Clicked="EditClicked"/>
-                            <Button Grid.Column="2"
+                            <Button Grid.Column="2" Text="Projects"
+                             TextColor="White"
+                            Background="#686de0"
+                            Command="{Binding Path=ShowProjectsCommand}"
+                            CommandParameter="{Binding}"
+                            Clicked="ProjectsClicked"
+                            />
+                            <Button Grid.Column="3"
                             Text="Delete"
                             TextColor="White"
                             Background="#eb4d4b"

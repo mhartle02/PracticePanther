@@ -42,11 +42,6 @@ namespace PracticePanther.MAUI.ViewModels
             EmployeeService.Current.Delete(id);
         }
 
-        public void ExecuteShowProjects(int id)
-        {
-            Shell.Current.GoToAsync($"//Projects?employeeId={id}");
-        }
-
         public void ExecuteEdit(int id)
         {
             Shell.Current.GoToAsync($"//EmployeeDetail?employeeId={id}");
@@ -65,10 +60,6 @@ namespace PracticePanther.MAUI.ViewModels
                 (e) => ExecuteDelete((e as EmployeeViewModel).Model.Id));
             EditCommand = new Command(
                 (e) => ExecuteEdit((e as EmployeeViewModel).Model.Id));
-            AddProjectCommand = new Command(
-                (e) => ExecuteAddProject());
-            ShowProjectsCommand = new Command(
-                (e) => ExecuteShowProjects((e as EmployeeViewModel).Model.Id));
         }
 
         public EmployeeViewModel(Employee employee)
