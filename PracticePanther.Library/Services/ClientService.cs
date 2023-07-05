@@ -1,19 +1,21 @@
 ﻿
+using Newtonsoft.Json;
 using PracticePanther.Library.Models;
+using PracticePanther.Library.Utilities;
+using System.Text.Json.Nodes;
 
 namespace PracticePanther.Library.Services
 {
     public class ClientService
     {
+        private List<Client> clients;
         public List<Client> Clients
         {
             get
             {
-                return clients;
+                return clients ?? new List<Client>();
             }
         }
-
-        private List<Client> clients;
 
         private static ClientService? instance;
 
@@ -30,10 +32,17 @@ namespace PracticePanther.Library.Services
         }
         private ClientService()
         {
-            clients = new List<Client>
+            var response = new WebRequestHandler()
+              .Get("/Client")
+              .Result;
+            var settings = new JsonSerializerSettings
             {
-
+                TypeNameHandling = TypeNameHandling.All
             };
+              clients = JsonConvert
+                .DeserializeObject<List<Client>>(response, settings) 
+                ?? new List<Client>();
+            
         }
 
         public void Add(Client c)
@@ -58,17 +67,19 @@ namespace PracticePanther.Library.Services
 
         public void AddOrUpdate(Client c)
         {
-            if (c.Id == 0)
-            {
-                //add
-                c.Id = LastId + 1;
-                Clients.Add(c);
-            }
+       
+              var response 
+                =  new WebRequestHandler().Post("/Client", c).Result;
+            
 
         }
 
         public Client? Get(int id)
         {
+            /*var response = new WebRequestHandler()
+                .Get($"/Client/GetClients/{id}")
+                .Result;
+            var client = JsonConvert.DeserializeObject<Client>(response);*/
             return Clients.FirstOrDefault(c => c.Id == id);
         }
 
@@ -97,75 +108,5 @@ namespace PracticePanther.Library.Services
 
 
 
-
-//private static object _lock = new object();
-//private static ClientService? instance;
-//public static ClientService Current 
-//{
-//    get
-//    {
-//        lock(_lock)
-//        {
-//            if (instance == null)
-//            {
-//                instance = new ClientService();
-//            }
-//        }
-//        return instance;
-//    }
-
-//}
-
-//private List<Client> CurrentClients;
-//private ClientService()
-//{
-//    CurrentClients = new List<Client>
-//    {
-//        new Client {Id = 1, Name = "Mason Hartle"},
-//        new Client {Id = 2, Name = "John Doe"}
-//    };
-//}
-
-//public List<Client> Search (string query)
-//{
-
-
-//    return CurrentClients.Where(c => c.Name.ToUpper().Contains(query.ToUpper())).ToList();
-//}
-
-//public Client? Get(int id)
-//{
-//    return CurrentClients.FirstOrDefault(c => c.Id == id);
-//}
-
-//public List<Client> currentclients
-//{
-//    get { return CurrentClients; }
-//}
-//public void Add(Client? client)
-//{
-//    if (client != null)
-//    {
-//        CurrentClients.Add(client);
-//    }
-//}
-
-//public void Read()
-//{
-//    CurrentClients.ForEach(Console.WriteLine);
-//}
-
-//public void Delete(int id)
-//{
-//    var ClientToRemove = Get(id);
-//    if (ClientToRemove != null)
-//    {
-//        Clients.Remove(ClientToRemove);
-//    }
-//}
-//public void Delete(Client c)
-//{
-//    Delete(c.Id);
-//}
 
 

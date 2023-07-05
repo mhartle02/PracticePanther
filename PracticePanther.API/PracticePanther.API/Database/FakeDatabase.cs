@@ -1,4 +1,5 @@
-﻿using PracticePanther.Library.Models;
+﻿using PracticePanther.API.EC;
+using PracticePanther.Library.Models;
 
 namespace PracticePanther.API.Database
 {
@@ -13,5 +14,9 @@ namespace PracticePanther.API.Database
             new Client{Id = 5, Name = "Client 5"},
             new Client{Id = 6, Name = "Client 6"},
         };
+
+        public static int LastClientId => Clients.Any()? Clients.Select(c => c.Id).Max() : 0 ;
+ 
+
     }
 }

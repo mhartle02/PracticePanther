@@ -98,13 +98,13 @@ namespace PracticePanther.MAUI.ViewModels
 
         public ClientViewModel(int clientId)
         {
-            if (clientId == 0)
+            if (clientId > 0)
             {
-                Model = new Client();
+                Model = ClientService.Current.Get(clientId);
             }
             else
             {
-                Model = ClientService.Current.Get(clientId);
+                Model = new Client();
             }
             SetupCommands();
         }

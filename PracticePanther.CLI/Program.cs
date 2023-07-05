@@ -1,4 +1,4 @@
-﻿using PracticePanther.CLI.Models;
+﻿using PracticePanther.Library.Models;
 using PracticePanther.Library.Services;
 using System;
 

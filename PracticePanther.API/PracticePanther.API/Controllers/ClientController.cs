@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PracticePanther.API.Database;
+using PracticePanther.API.EC;
 using PracticePanther.Library.Models;
 
 namespace PracticePanther.API.Controllers
@@ -20,5 +21,33 @@ namespace PracticePanther.API.Controllers
         {
             return FakeDatabase.Clients;
         }
+
+        [HttpGet("/{id}")]
+        public Client GetId(int id) 
+        {
+            return FakeDatabase.Clients.FirstOrDefault(c => c.Id == id) ?? new Client();
+        }
+
+        [HttpDelete ("Delete/{id}")]
+
+        public Client? Delete (int id)
+        { 
+            var clientToDelete = FakeDatabase.Clients.FirstOrDefault(c => c.Id != id);
+            if(clientToDelete != null)
+            {
+                FakeDatabase.Clients.Remove(clientToDelete);
+            }
+            return clientToDelete;
+        }
+
+        [HttpPost]
+        public Client AddOrUpdate ([FromBody]Client client) 
+        {
+            return new ClientEC().AddOrUpdate(client);
+
+        }
+
     }
+
+
 }
