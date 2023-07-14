@@ -23,7 +23,9 @@ namespace PracticePanther.MAUI.ViewModels
 
         public void ExecuteSearchCommand()
         {
+
             NotifyPropertyChanged(nameof(Clients));
+
         }
         public ClientViewViewModel()
         {

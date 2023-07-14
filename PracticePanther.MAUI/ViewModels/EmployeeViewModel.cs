@@ -27,8 +27,6 @@ namespace PracticePanther.MAUI.ViewModels
 
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
-        public ICommand AddProjectCommand { get; private set; }
-        public ICommand ShowProjectsCommand { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -43,15 +41,9 @@ namespace PracticePanther.MAUI.ViewModels
         }
 
         public void ExecuteEdit(int id)
-        {
-            Shell.Current.GoToAsync($"//EmployeeDetail?employeeId={id}");
-        }
-
-        public void ExecuteAddProject()
-        {
-            AddOrUpdate(); // Save the employee so that we have an id to link the project to
-                           // TODO: if we cancel the creation of this employee, we need to delete it on cancel.
-            Shell.Current.GoToAsync($"//ProjectDetail?employeeId={Model.Id}");
+        { 
+ 
+            Shell.Current.GoToAsync($"//EmployeeDetail?EmployeeId={id}");
         }
 
         private void SetupCommands()
@@ -91,5 +83,6 @@ namespace PracticePanther.MAUI.ViewModels
         {
             EmployeeService.Current.AddOrUpdate(Model);
         }
+
     }
 }

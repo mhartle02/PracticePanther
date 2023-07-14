@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PracticePanther.Library.DTO;
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Services;
 
@@ -11,7 +12,7 @@ namespace PracticePanther.MAUI.ViewModels
 {
     public class ProjectViewViewModel
     {
-        public Client Client { get; set; }
+        public ClientDTO Client { get; set; }
         public ObservableCollection<Project> Projects
         {
             get
@@ -34,7 +35,7 @@ namespace PracticePanther.MAUI.ViewModels
             }
             else
             {
-                Client = new Client();
+                Client = new ClientDTO();
             }
 
         }

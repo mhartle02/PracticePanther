@@ -33,11 +33,14 @@ namespace PracticePanther.MAUI.ViewModels
             }
         }
 
+        private Window parentWindow;
         private IDispatcherTimer timer { get; set; }
         private Stopwatch stopwatch { get; set; }
 
         public ICommand StartCommand { get; private set; }
         public ICommand StopCommand { get; private set; }
+
+        public ICommand SubmitCommand { get; private set; }
 
         public void ExecuteStart()
         {
@@ -50,12 +53,18 @@ namespace PracticePanther.MAUI.ViewModels
             stopwatch.Stop();
         }
 
+        public void ExecuteSubmit()
+        {
+            Application.Current.CloseWindow(parentWindow);
+        }
+
         private void SetupCommands()
         {
             StartCommand = new Command(ExecuteStart);
             StopCommand = new Command(ExecuteStop);
+            SubmitCommand = new Command(ExecuteSubmit);
         }
-        public TimerViewModel(int projectId)
+        public TimerViewModel(int projectId, Window parentWindow)
         {
             Project = ProjectService.Current.Get(projectId) ?? new Project();
             stopwatch = new Stopwatch();
@@ -65,6 +74,7 @@ namespace PracticePanther.MAUI.ViewModels
 
             timer.Tick += Timer_Tick;
             SetupCommands();
+            this.parentWindow = parentWindow; 
         }
 
         private void Timer_Tick(object sender, EventArgs e)

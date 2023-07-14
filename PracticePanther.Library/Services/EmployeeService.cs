@@ -63,6 +63,7 @@ namespace PracticePanther.Library.Services
                 e.Id = LastId + 1;
                 Employees.Add(e);
             }
+
         }
 
         public Employee? Get(int id)

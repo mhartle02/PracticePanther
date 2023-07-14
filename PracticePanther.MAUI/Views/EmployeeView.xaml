@@ -64,7 +64,7 @@
                                     Text="Edit"
                                     TextColor="White"
                                     Background="#686de0"
-                                    Command="{Binding Path=EditCommand}"
+                                    Command="{Binding Path= EditCommand}"
                                     CommandParameter="{Binding}"
                                     Clicked="EditClicked"/>
                             <Button Grid.Column="2"
