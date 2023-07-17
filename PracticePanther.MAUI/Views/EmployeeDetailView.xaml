@@ -7,7 +7,7 @@
              NavigatedTo="OnArriving">
 
 
-    <Grid Padding="20" ColumnSpacing ="20" RowSpacing="200">
+    <Grid Padding="20" ColumnSpacing ="20" RowSpacing="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="688"/>
@@ -16,6 +16,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="44"/>
+            <RowDefinition Height="44"/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -32,16 +34,49 @@
                    TextColor="Black"
                    Text="{Binding Path=Model.Name}"
                    />
-        <Button Text="OK"
-                    Grid.Column="2"
-                    BackgroundColor="#6ab04c"
-                    TextColor="White"
-                    Clicked="OkClicked" />
+        
+        <Label Grid.Column="0"
+            Grid.Row="1"
+            FontSize="23"
+            Text="Rate"
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+             
+                     />
+        <Entry Grid.Column="1"
+               Grid.Row="1"
+                   Background="White"
+                   TextColor="Black"
+                   Text="{Binding Path=Model.Rate}"
+                   />
 
         <Grid Grid.Row="2" Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
+                <RowDefinition Height="44"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="263"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                BackgroundColor="#6ab04c"
+                TextColor="White"
+                Text="Ok"
+                Clicked="OkClicked"/>
+        </Grid>
+
+
+        <Grid Grid.Row="3" Grid.Column="1">
+
+            <Grid.RowDefinitions>
                 <RowDefinition Height="44"/>
             </Grid.RowDefinitions>
 

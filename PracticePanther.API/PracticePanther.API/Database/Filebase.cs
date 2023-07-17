@@ -16,7 +16,7 @@ namespace PracticePanther.API.Database
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
                     _instance = new Filebase();
                 }
@@ -30,14 +30,13 @@ namespace PracticePanther.API.Database
             _root = @"C:\temp";
             _clientRoot = $"{_root}\\Clients";
             _projectRoot = $"{_root}\\Projects";
+            //TODO: add support for employees, times, bills
         }
-
-        private int LastClientId
-        => Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
+        private int LastClientId => Clients.Any() ? Clients.Select(c => c.Id).Max() : 0;
         public Client AddOrUpdate(Client c)
         {
             //set up a new Id if one doesn't already exist
-            if(c.Id <= 0)
+            if (c.Id <= 0)
             {
                 c.Id = LastClientId + 1;
             }
@@ -45,7 +44,7 @@ namespace PracticePanther.API.Database
             var path = $"{_clientRoot}\\{c.Id}.json";
 
             //if the item has been previously persisted
-            if(File.Exists(path))
+            if (File.Exists(path))
             {
                 //blow it up
                 File.Delete(path);
@@ -64,16 +63,15 @@ namespace PracticePanther.API.Database
             {
                 var root = new DirectoryInfo(_clientRoot);
                 var _clients = new List<Client>();
-                foreach(var todoFile in root.GetFiles())
+                foreach (var todoFile in root.GetFiles())
                 {
-                    var todo = JsonConvert
-                        .DeserializeObject<Client>
+                    var todo = JsonConvert.
+                        DeserializeObject<Client>
                         (File.ReadAllText(todoFile.FullName));
-                    if(todo != null)
+                    if (todo != null)
                     {
                         _clients.Add(todo);
                     }
-                 
                 }
                 return _clients;
             }
@@ -92,6 +90,5 @@ namespace PracticePanther.API.Database
             return true;
         }
     }
-
 
 }

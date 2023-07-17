@@ -17,5 +17,11 @@
             >
             
         </ListView>
+        <Button
+            Text="Back"
+            Background="#535c68"
+            Clicked="GoBack"
+            TextColor="White"/>
+            
     </VerticalStackLayout>
 </ContentPage>
