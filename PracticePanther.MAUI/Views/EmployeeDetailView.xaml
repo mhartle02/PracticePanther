@@ -7,7 +7,7 @@
              NavigatedTo="OnArriving">
 
 
-    <Grid Padding="20" ColumnSpacing ="20" RowSpacing="10">
+    <Grid Padding="20" ColumnSpacing ="20" RowSpacing="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="688"/>
@@ -15,6 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="44"/>
             <RowDefinition Height="44"/>
             <RowDefinition Height="44"/>
             <RowDefinition/>
@@ -49,8 +50,48 @@
                    TextColor="Black"
                    Text="{Binding Path=Model.Rate}"
                    />
+        <Label Grid.Column="0"
+               Grid.Row="2"
+               Text="Status"
+               FontSize="23"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Entry Grid.Column="1"
+               Grid.Row="2"
+               Background="White"
+               TextColor="Black"
+               Text="{Binding Path = Model.Status}" />
+        <!--<Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+            <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Text="Active" 
+                    BackgroundColor="#535c68"
+                    TextColor="White"
+                    Command="{Binding Path=ToActive}"
+                    CommandParameter="{Binding}"
+                    Clicked="ActiveClicked"
+                 
+                     />
+                    
+            <Button Grid.Column="1"
+                    Text="Inactive"
+                    BackgroundColor="#535c68"
+                    TextColor="White"
+                    />
+        </Grid>-->
+
+            
+         
+
+        <Grid Grid.Row="3" Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
@@ -74,7 +115,7 @@
         </Grid>
 
 
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.Column="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="44"/>

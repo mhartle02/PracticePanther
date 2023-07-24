@@ -85,6 +85,11 @@ namespace PracticePanther.Library.Services
                 return Employees.Any() ? Employees.Select(e => e.Id).Max() : 0;
             }
         }
+
+        public void ToActive(Employee e)
+        {
+            e.Status = "ACTIVE";
+        }
     }
 }
 

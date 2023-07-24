@@ -6,61 +6,33 @@ namespace PracticePanther.API.EC
 {
     public class ClientEC
     {
-        public ClientDTO AddOrUpdate(ClientDTO dto)
+        public Client AddOrUpdate(Client client)
         {
-            //if (dto.Id > 0)
-            //{
-            //    var clientToUpdate
-            //        = Filebase.Current.Clients
-            //        .FirstOrDefault(c => c.Id == dto.Id);
-            //    if (clientToUpdate != null)
-            //    {
-            //        Filebase.Current.Clients.Remove(clientToUpdate);
-            //    }
-            //    Filebase.Current.Clients.Add(new Client(dto));
-            //}
-            //else
-            //{
-            //    Filebase.Current.Clients.Add(new Client(dto));
-            //}
-
-            Filebase.Current.AddOrUpdate(new Client(dto));
-
-            return dto;
-        }
-
-        public ClientDTO? Get(int id)
-        {
-            var returnVal = FakeDatabase.Clients
-                .FirstOrDefault(c => c.Id == id)
-                ?? new Client();
-
-            return new ClientDTO(returnVal);
-        }
-
-        public ClientDTO? Delete(int id)
-        {
-            var clientToDelete = FakeDatabase.Clients.FirstOrDefault(c => c.Id == id);
-            if (clientToDelete != null)
+            if (client.Id > 0)
             {
-                FakeDatabase.Clients.Remove(clientToDelete);
+                var clientToUpdate
+                    = FakeDatabase.Clients
+                    .FirstOrDefault(c => c.Id == client.Id);
+                if (clientToUpdate != null)
+                {
+                    FakeDatabase.Clients.Remove(clientToUpdate);
+                }
+                FakeDatabase.Clients.Add(client);
             }
-            return clientToDelete != null ?
-                new ClientDTO(clientToDelete)
-                : null;
+            else
+            {
+                client.Id = FakeDatabase.LastClientId + 1;
+                FakeDatabase.Clients.Add(client);
+            }
+
+            return client;
         }
 
-
-        public IEnumerable<ClientDTO> Search(string query = "")
+        public IEnumerable<Client> Search(string query)
         {
             return FakeDatabase.Clients.
                 Where(c => c.Name.ToUpper()
-                .Contains(query.ToUpper()))
-                .Take(1000)
-                .Select(c => new ClientDTO(c));
-                
-
-                    
+                    .Contains(query.ToUpper())).Take(1000);
         }
     }
 }

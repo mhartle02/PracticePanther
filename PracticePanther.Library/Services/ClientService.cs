@@ -1,9 +1,7 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PracticePanther.Library.DTO;
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Utilities;
-using System.Text.Json.Nodes;
 
 namespace PracticePanther.Library.Services
 {
@@ -60,7 +58,7 @@ namespace PracticePanther.Library.Services
         {
             var response
                 = new WebRequestHandler().Post("/Client", c).Result;
-            //MISSING CODE
+         
             var myUpdatedClient = JsonConvert.DeserializeObject<ClientDTO>(response);
             if (myUpdatedClient != null)
             {
@@ -95,13 +93,5 @@ namespace PracticePanther.Library.Services
                     .Contains(query.ToUpper()));
         }
 
-  
-        
     }
 }
-
-
-
-
-
-

@@ -32,4 +32,10 @@ public partial class EmployeeDetailView : ContentPage
         BindingContext = new EmployeeViewModel(EmployeeId);
 
     }
+
+    private void ActiveClicked(object sender, EventArgs e)
+    {
+        (BindingContext as EmployeeViewViewModel).RefreshEmployeeList();
+
+    }
 }

@@ -25,7 +25,6 @@ namespace PracticePanther.MAUI.ViewModels
         {
 
             NotifyPropertyChanged(nameof(Clients));
-
         }
         public ClientViewViewModel()
         {
@@ -69,4 +68,3 @@ namespace PracticePanther.MAUI.ViewModels
 
     }
 }
-

@@ -10,6 +10,7 @@ using PracticePanther.Library.Services;
 
 namespace PracticePanther.MAUI.ViewModels
 {
+
     public class ProjectViewViewModel
     {
         public ClientDTO Client { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PracticePanther.API.Database;
 using PracticePanther.API.EC;
 using PracticePanther.Library.DTO;
 using PracticePanther.Library.Models;
@@ -18,31 +19,36 @@ namespace PracticePanther.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ClientDTO> Get()
+        public IEnumerable<Client> Get()
         {
-            return new ClientEC().Search();
+            return FakeDatabase.Clients;
         }
 
         [HttpGet("/{id}")]
-        public ClientDTO? GetId(int id)
+        public Client GetId(int id)
         {
-            return new ClientEC().Get(id);
+            return FakeDatabase.Clients.FirstOrDefault(c => c.Id == id) ?? new Client();
         }
 
         [HttpDelete("Delete/{id}")]
-        public ClientDTO? Delete(int id)
+        public Client? Delete(int id)
         {
-            return new ClientEC().Delete(id);
+            var clientToDelete = FakeDatabase.Clients.FirstOrDefault(c => c.Id == id);
+            if (clientToDelete != null)
+            {
+                FakeDatabase.Clients.Remove(clientToDelete);
+            }
+            return clientToDelete;
         }
 
         [HttpPost]
-        public ClientDTO AddOrUpdate([FromBody] ClientDTO client)
+        public Client AddOrUpdate([FromBody] Client client)
         {
             return new ClientEC().AddOrUpdate(client);
         }
 
-        [HttpPost]
-        public IEnumerable<ClientDTO> Search([FromBody] QueryMessage query)
+        [HttpPost("/Search")]
+        public IEnumerable<Client> Search([FromBody] QueryMessage query)
         {
             return new ClientEC().Search(query.Query);
         }

@@ -13,10 +13,11 @@ namespace PracticePanther.Library.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Rate { get; set; }
+        public string? Status { get; set; }
 
         public override string ToString()
         {
-            return $"{Id} {Name} (Hourly Rate: {Rate})";
+            return $"{Id} {Name} (Hourly Rate: {Rate}) **{Status}**";
         }
     }
 }

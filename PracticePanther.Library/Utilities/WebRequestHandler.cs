@@ -71,6 +71,7 @@ namespace PracticePanther.Library.Utilities
 
         public async Task<string> Post(string url, object obj)
         {
+            
             var fullUrl = $"https://{host}:{port}{url}";
             using (var client = new HttpClient())
             {

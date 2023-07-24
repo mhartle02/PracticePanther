@@ -33,6 +33,7 @@ namespace PracticePanther.MAUI.ViewModels
 
         private void ExecuteTimer()
         {
+
             var window = new Window()
             {
                 Width = 250,

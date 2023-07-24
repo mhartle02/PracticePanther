@@ -27,6 +27,7 @@ namespace PracticePanther.MAUI.ViewModels
 
         public ICommand DeleteCommand { get; private set; }
         public ICommand EditCommand { get; private set; }
+        public ICommand ToActive { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -46,12 +47,19 @@ namespace PracticePanther.MAUI.ViewModels
             Shell.Current.GoToAsync($"//EmployeeDetail?EmployeeId={id}");
         }
 
+        public void ExecuteToActive(Employee e)
+        {
+            EmployeeService.Current.ToActive(e);
+        }
+
         private void SetupCommands()
         {
             DeleteCommand = new Command(
                 (e) => ExecuteDelete((e as EmployeeViewModel).Model.Id));
             EditCommand = new Command(
                 (e) => ExecuteEdit((e as EmployeeViewModel).Model.Id));
+            ToActive = new Command(
+                (e) => ExecuteToActive((e as EmployeeViewModel).Model));
         }
 
         public EmployeeViewModel(Employee employee)
@@ -83,6 +91,7 @@ namespace PracticePanther.MAUI.ViewModels
         {
             EmployeeService.Current.AddOrUpdate(Model);
         }
+
 
     }
 }
