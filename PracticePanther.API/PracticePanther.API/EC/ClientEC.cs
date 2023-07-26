@@ -8,23 +8,28 @@ namespace PracticePanther.API.EC
     {
         public ClientDTO AddOrUpdate(ClientDTO dto)
         {
-            if (dto.Id > 0)
-            {
-                var clientToUpdate
-                    = Filebase.Current.Clients
-                    .FirstOrDefault(c => c.Id == dto.Id);
-                if (clientToUpdate != null)
-                {
-                    Filebase.Current.Clients.Remove(clientToUpdate);
-                }
-                Filebase.Current.Clients.Add(new Client(dto));
-            }
-            else
-            {
-                Filebase.Current.Clients.Add(new Client(dto));
-            }
+            //if (dto.Id > 0)
+            //{
+            //    var clientToUpdate
+            //        = Filebase.Current.Clients
+            //        .FirstOrDefault(c => c.Id == dto.Id);
+            //    if(clientToUpdate != null) {
+            //        Filebase.Current.Clients.Remove(clientToUpdate);
+            //    }
+            //    Filebase.Current.Clients.Add(new Client(dto));
+            //}
+            //else
+            //{
+            //    Filebase.Current.Clients.Add(new Client(dto));
+            //}
 
-            Filebase.Current.AddOrUpdate(new Client(dto));
+            //Filebase.Current.AddOrUpdate(new Client(dto));
+
+            if(dto.Id <= 0 )
+            {
+                var result = MsSqlContext.Current.Insert(new Client(dto));
+                return new ClientDTO(result);
+            }
 
             return dto;
         }
@@ -52,8 +57,8 @@ namespace PracticePanther.API.EC
 
         public IEnumerable<ClientDTO> Search(string query = "")
         {
-            return FakeDatabase.Clients.
-                Where(c => c.Name.ToUpper()
+            return MsSqlContext.Current.Get()
+                .Where(c => c.Name.ToUpper()
                     .Contains(query.ToUpper()))
                 .Take(1000)
                 .Select(c => new ClientDTO(c));
