@@ -18,15 +18,39 @@ namespace PracticePanther.API.Database
             {
                 using (var conn = new SqlConnection(connectionString))
                 {
-                    var sql = $"exec InsertClient @name = '{c.Name}'";
-                    using (var cmd = new SqlCommand(sql, conn))
+
+       
+                    var sql = $"InsertClient";
+                    if(c.Id <= 0)
                     {
-                        conn.Open();
-                        var Id = (int)cmd.ExecuteScalar();
-                        c.Id = Id;
+                        using (var cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new SqlParameter("name", c.Name));
+                            conn.Open();
+                            var Id = (int)cmd.ExecuteScalar();
+                            c.Id = Id;
+                        }
                     }
+                    
+                    if(c.Id > 0)
+                    {
+                        sql = $"UpdateClient";
+                        using (var cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new SqlParameter("id", c.Id));
+                            cmd.Parameters.Add(new SqlParameter("name", c.Name));
+                            conn.Open();
+                            var Id = (int)cmd.ExecuteScalar();
+                            c.Id = Id;
+                        }
+                    }
+                      
+                    
                 }
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return c;
             }

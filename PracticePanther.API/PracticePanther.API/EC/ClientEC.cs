@@ -25,11 +25,11 @@ namespace PracticePanther.API.EC
 
             //Filebase.Current.AddOrUpdate(new Client(dto));
 
-            if(dto.Id <= 0 )
-            {
+            //if(dto.Id <= 0 )
+            //{
                 var result = MsSqlContext.Current.Insert(new Client(dto));
                 return new ClientDTO(result);
-            }
+            //}
 
             return dto;
         }
