@@ -54,6 +54,15 @@ namespace PracticePanther.Library.Services
             projects.Add(project);
         }
 
+        public void Delete(int id)
+        {
+            var projectToDelete = Projects.FirstOrDefault(c => c.Id == id);
+            if (projectToDelete != null)
+            {
+                Projects.Remove(projectToDelete);
+            }
+        }
+
         private int LastId
         {
             get

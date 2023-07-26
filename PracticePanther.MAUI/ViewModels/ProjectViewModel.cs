@@ -16,6 +16,7 @@ namespace PracticePanther.MAUI.ViewModels
 
         public ICommand AddCommand { get; private set; }
         public ICommand TimerCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
 
         public string Display
         {
@@ -29,6 +30,11 @@ namespace PracticePanther.MAUI.ViewModels
         {
             ProjectService.Current.Add(Model);
             Shell.Current.GoToAsync($"//ClientDetail?clientId={Model.ClientId}");
+        }
+
+        private void ExecuteDelete(int id)
+        {
+            ProjectService.Current.Delete(id);
         }
 
         private void ExecuteTimer()
@@ -51,6 +57,9 @@ namespace PracticePanther.MAUI.ViewModels
         {
             AddCommand = new Command(ExecuteAdd);
             TimerCommand = new Command(ExecuteTimer);
+            DeleteCommand = new Command(
+                (p) => ExecuteDelete((p as ProjectViewModel).Model.Id));
+            
         }
 
         public ProjectViewModel()

@@ -30,4 +30,9 @@ public partial class ClientDetailView : ContentPage
         BindingContext = new ClientViewModel(ClientId);
         (BindingContext as ClientViewModel).RefreshProjects();
     }
+
+    private void DeleteClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ProjectViewViewModel).RefreshProjectList();
+    }
 }

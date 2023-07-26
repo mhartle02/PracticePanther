@@ -43,9 +43,12 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12*"/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
                             <Button Grid.Column="1" Text="Timer" BackgroundColor="#686de0" TextColor="White" Command="{Binding TimerCommand}"/>
+                            <Button Grid.Column="2" Text="Delete" BackgroundColor="Red" TextColor="White" Command="{Binding Path=DeleteCommand}" 
+                                    CommandParameter="{Binding}" Clicked="DeleteClicked" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
