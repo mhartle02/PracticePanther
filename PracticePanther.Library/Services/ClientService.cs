@@ -58,7 +58,7 @@ namespace PracticePanther.Library.Services
         {
             var response
                 = new WebRequestHandler().Post("/Client", c).Result;
-         
+            //MISSING CODE
             var myUpdatedClient = JsonConvert.DeserializeObject<ClientDTO>(response);
             if (myUpdatedClient != null)
             {

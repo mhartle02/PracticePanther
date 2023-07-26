@@ -9,20 +9,30 @@ using System.Threading.Tasks;
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Services;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace PracticePanther.MAUI.ViewModels
 {
     public class TimerViewModel : INotifyPropertyChanged
     {
         public Project Project { get; set; }
+        public List<Project> Projects
+        {
+            get
+            {
+                return ProjectService.Current.Projects;
+            }
+        }
         public string TimerDisplay
         {
             get
             {
-                return string.Format("{0:00}:{0:00}:{1:00}",
-              stopwatch.Elapsed.Hours,
-              stopwatch.Elapsed.Minutes,
-              stopwatch.Elapsed.Seconds);
+                var time = stopwatch.Elapsed;
+                var str = string.Format("{0:00}:{1:00}:{2:00}",
+              time.Hours,
+              time.Minutes,
+              time.Seconds);
+                return str;
             }
         }
         public string ProjectDisplay
@@ -34,6 +44,7 @@ namespace PracticePanther.MAUI.ViewModels
         }
 
         private Window parentWindow;
+
         private IDispatcherTimer timer { get; set; }
         private Stopwatch stopwatch { get; set; }
 
@@ -41,7 +52,6 @@ namespace PracticePanther.MAUI.ViewModels
         public ICommand StopCommand { get; private set; }
 
         public ICommand SubmitCommand { get; private set; }
-
         public void ExecuteStart()
         {
             stopwatch.Start();
@@ -55,6 +65,7 @@ namespace PracticePanther.MAUI.ViewModels
 
         public void ExecuteSubmit()
         {
+
             Application.Current.CloseWindow(parentWindow);
         }
 
@@ -74,7 +85,7 @@ namespace PracticePanther.MAUI.ViewModels
 
             timer.Tick += Timer_Tick;
             SetupCommands();
-            this.parentWindow = parentWindow; 
+            this.parentWindow = parentWindow;
         }
 
         private void Timer_Tick(object sender, EventArgs e)

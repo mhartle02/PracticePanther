@@ -6,33 +6,57 @@ namespace PracticePanther.API.EC
 {
     public class ClientEC
     {
-        public Client AddOrUpdate(Client client)
+        public ClientDTO AddOrUpdate(ClientDTO dto)
         {
-            if (client.Id > 0)
+            if (dto.Id > 0)
             {
                 var clientToUpdate
-                    = FakeDatabase.Clients
-                    .FirstOrDefault(c => c.Id == client.Id);
+                    = Filebase.Current.Clients
+                    .FirstOrDefault(c => c.Id == dto.Id);
                 if (clientToUpdate != null)
                 {
-                    FakeDatabase.Clients.Remove(clientToUpdate);
+                    Filebase.Current.Clients.Remove(clientToUpdate);
                 }
-                FakeDatabase.Clients.Add(client);
+                Filebase.Current.Clients.Add(new Client(dto));
             }
             else
             {
-                client.Id = FakeDatabase.LastClientId + 1;
-                FakeDatabase.Clients.Add(client);
+                Filebase.Current.Clients.Add(new Client(dto));
             }
 
-            return client;
+            Filebase.Current.AddOrUpdate(new Client(dto));
+
+            return dto;
         }
 
-        public IEnumerable<Client> Search(string query)
+        public ClientDTO? Get(int id)
+        {
+            var returnVal = FakeDatabase.Clients
+                 .FirstOrDefault(c => c.Id == id)
+                 ?? new Client();
+
+            return new ClientDTO(returnVal);
+        }
+
+        public ClientDTO? Delete(int id)
+        {
+            var clientToDelete = FakeDatabase.Clients.FirstOrDefault(c => c.Id == id);
+            if (clientToDelete != null)
+            {
+                FakeDatabase.Clients.Remove(clientToDelete);
+            }
+            return clientToDelete != null ?
+                new ClientDTO(clientToDelete)
+                : null;
+        }
+
+        public IEnumerable<ClientDTO> Search(string query = "")
         {
             return FakeDatabase.Clients.
                 Where(c => c.Name.ToUpper()
-                    .Contains(query.ToUpper())).Take(1000);
+                    .Contains(query.ToUpper()))
+                .Take(1000)
+                .Select(c => new ClientDTO(c));
         }
     }
 }
