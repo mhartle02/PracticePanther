@@ -44,6 +44,11 @@
         ContentTemplate="{DataTemplate local2:ProjectDetailView}"
         Route="ProjectDetail" />
 
+    <ShellContent
+        Title="Time Entry"
+        ContentTemplate="{DataTemplate local2:TimeView}"
+        Route="Times" />
+
 
 
 </Shell>
