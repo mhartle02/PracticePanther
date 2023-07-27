@@ -3,6 +3,7 @@ using PracticePanther.Library.DTO;
 using PracticePanther.Library.Models;
 using PracticePanther.Library.Utilities;
 
+
 namespace PracticePanther.Library.Services
 {
     public class ClientService
@@ -47,10 +48,11 @@ namespace PracticePanther.Library.Services
 
         public void Delete(int id)
         {
-            var clientToDelete = Clients.FirstOrDefault(c => c.Id == id);
-            if (clientToDelete != null)
+            var clientToRemove = Clients.FirstOrDefault(c => c.Id == id);
+            if (clientToRemove != null)
             {
-                Clients.Remove(clientToDelete);
+                var response = new WebRequestHandler().Delete($"/Client/Delete/{id}").Result;
+                Clients.Remove(clientToRemove); 
             }
         }
 
@@ -92,6 +94,7 @@ namespace PracticePanther.Library.Services
                 .Where(c => c.Name.ToUpper()
                     .Contains(query.ToUpper()));
         }
+
 
     }
 }

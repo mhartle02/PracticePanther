@@ -31,7 +31,7 @@ namespace PracticePanther.API.Controllers
         }
 
         [HttpDelete("Delete/{id}")]
-        public ClientDTO? Delete(int id)
+        public bool Delete(int id)
         {
             return new ClientEC().Delete(id);
         }

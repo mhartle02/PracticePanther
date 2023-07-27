@@ -58,7 +58,34 @@ namespace PracticePanther.API.Database
             return c;
         }
 
-        public List<Client> Get()
+        public bool Delete(int id)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(connectionString))
+                {
+
+
+                    var sql = $"DeleteClient";
+                        using (var cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new SqlParameter("id", id));
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                          
+                        }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+            public List<Client> Get()
         {
             var results = new List<Client>();
             using (var conn = new SqlConnection(connectionString))

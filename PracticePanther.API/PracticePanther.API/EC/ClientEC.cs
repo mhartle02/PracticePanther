@@ -43,16 +43,10 @@ namespace PracticePanther.API.EC
             return new ClientDTO(returnVal);
         }
 
-        public ClientDTO? Delete(int id)
+        public bool Delete(int id)
         {
-            var clientToDelete = FakeDatabase.Clients.FirstOrDefault(c => c.Id == id);
-            if (clientToDelete != null)
-            {
-                FakeDatabase.Clients.Remove(clientToDelete);
-            }
-            return clientToDelete != null ?
-                new ClientDTO(clientToDelete)
-                : null;
+            var result = MsSqlContext.Current.Delete(id);
+            return result;
         }
 
         public IEnumerable<ClientDTO> Search(string query = "")
