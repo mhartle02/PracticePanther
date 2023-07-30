@@ -31,7 +31,10 @@ namespace PracticePanther.Library.Services
 
         private EmployeeService()
         {
-            employees = new List<Employee>();
+            employees = new List<Employee>
+            {
+                new Employee {Id = 1, Name = "Mason Hartle", Rate = 725M}
+            };
 
         }
 

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.TimeView"
              Title="TimeView"
-             NavigatedTo="OnArriving">
+             NavigatedTo="OnArriving"
+             Background="#95afc0">
     <VerticalStackLayout>
         <ListView
             ItemsSource="{Binding Times}"
@@ -27,7 +28,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Add" Clicked="AddClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+        <Button Text="Add" Clicked="AddClicked" BackgroundColor="#6ab04c" TextColor="White"/>
+        <Button Text="Cancel" BackgroundColor="#535c68" Clicked="CancelClicked" TextColor="White"/>
     </VerticalStackLayout>
 </ContentPage>

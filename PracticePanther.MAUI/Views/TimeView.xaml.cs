@@ -21,6 +21,6 @@ public partial class TimeView : ContentPage
 
     private void AddClicked(object sender, EventArgs e)
     {
-
+        Shell.Current.GoToAsync("//TimeDetail");
     }
 }
