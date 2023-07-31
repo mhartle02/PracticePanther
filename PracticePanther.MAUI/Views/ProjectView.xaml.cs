@@ -5,19 +5,31 @@ namespace PracticePanther.MAUI.Views;
 [QueryProperty(nameof(ClientId), "clientId")]
 public partial class ProjectView : ContentPage
 {
-	public int ClientId { get; set; }
-	public ProjectView()
-	{
-		InitializeComponent();
-	}
-
-    private void OnArriving(object sender, NavigatedToEventArgs e)
+    public int ClientId { get; set; }
+    public ProjectView()
     {
-		BindingContext = new ProjectViewViewModel(ClientId);
+        InitializeComponent();
+    }
+
+    private void OkClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ClientViewModel).AddOrUpdate();
+        Shell.Current.GoToAsync("//Clients");
     }
 
     private void GoBack(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("//Clients");
+    }
+
+    private void OnArriving(object sender, NavigatedToEventArgs e)
+    {
+        BindingContext = new ClientViewModel(ClientId);
+        (BindingContext as ClientViewModel).RefreshProjects();
+    }
+
+    private void DeleteClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ProjectViewViewModel).RefreshProjectList();
     }
 }

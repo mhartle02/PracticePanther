@@ -16,6 +16,7 @@ namespace PracticePanther.MAUI.ViewModels
     public class ProjectViewViewModel
     {
         public ClientDTO Client { get; set; }
+        public Project SelectedProject { get; set; }
         public ObservableCollection<Project> Projects
         {
             get
@@ -53,6 +54,17 @@ namespace PracticePanther.MAUI.ViewModels
         public void RefreshProjectList()
         {
             NotifyPropertyChanged(nameof(Projects));
+        }
+
+        public void Delete()
+        {
+            if (SelectedProject != null)
+            {
+                ClientService.Current.Delete(SelectedProject.Id);
+                SelectedProject = null;
+                NotifyPropertyChanged(nameof(Projects));
+                NotifyPropertyChanged(nameof(SelectedProject));
+            }
         }
     }
 }

@@ -6,16 +6,54 @@
              Background="#95afc0"
              NavigatedTo="OnArriving">
     <VerticalStackLayout>
-        <Label 
-            Text="{Binding Path=Client.Name}"
+        <Grid Padding="5" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label 
+            Grid.Row="0"
+            Text="{Binding Path=Model.Name}"
+            FontAttributes="Bold"
+            FontSize="25"
             VerticalOptions="Center" 
             HorizontalOptions="Start" />
+            <Label Text="Projects:" Grid.Row="1"></Label>
+            
+        </Grid>
+        <Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Column="0" BackgroundColor="White" TextColor="Black"></Entry>
+                <Button Grid.Column="1" Text="Search" BackgroundColor="#686de0" TextColor="White"></Button>
+                <Button Grid.Column="2" Text="Add Project" TextColor="White" BackgroundColor="#686de0" Command="{Binding AddProjectCommand}"></Button>
+            </Grid>
+        </Grid>
         <ListView
-            
-            ItemsSource="{Binding Projects}"
-            
+            ItemsSource="{Binding Path =Projects}"
+            SelectedItem="{Binding Path=SelectedProject}"
             >
-            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
+                            <Button Grid.Column="1" Text="Timer" BackgroundColor="#686de0" TextColor="White" Command="{Binding TimerCommand}"/>
+                            <Button Grid.Column="2" Text="Delete" BackgroundColor="Red" TextColor="White" Command="{Binding Path=DeleteCommand}" 
+                                    CommandParameter="{Binding}" Clicked="DeleteClicked" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
         <Button
             Text="Back"

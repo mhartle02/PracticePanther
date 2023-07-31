@@ -50,16 +50,6 @@ namespace PracticePanther.MAUI.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void Delete()
-        {
-            if (SelectedEmployee != null)
-            {
-                EmployeeService.Current.Delete(SelectedEmployee.Id);
-                SelectedEmployee = null;
-                NotifyPropertyChanged(nameof(Employees));
-                NotifyPropertyChanged(nameof(SelectedEmployee));
-            }
-        }
 
         public void RefreshEmployeeList()
         {
