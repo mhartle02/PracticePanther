@@ -1,10 +1,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PracticePanther.MAUI.Views.ProjectDetailView"
-             Title="New Client"
+             Title="New Project"
              Background="#95afc0"
              NavigatedTo="OnArrived">
-    
+
     <VerticalStackLayout>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -14,8 +14,12 @@
             <Label Grid.Column="0"
             Padding="10"
             Text="Name" />
-            <Entry Grid.Column="1" Background="White" TextColor="Black" Text="{Binding Path=Model.Name}"/>
+            <Entry Grid.Column="1" Text="{Binding Path=Model.Name}" TextColor="Black" BackgroundColor="White"/>
+           
         </Grid>
-        <Button Text="OK" Command="{Binding AddCommand}" BackgroundColor="#6ab04c" TextColor="White"/>
+        <Button Text="Open" Clicked="OpenClicked"></Button>
+        <Button Text="Close" Clicked="ClosedClicked"></Button>
+        <Button Text="OK" Command="{Binding AddCommand}" TextColor="White" BackgroundColor="#6ab04c"/>
+        <Button Text="Back" TextColor="White" BackgroundColor="#535c68" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>

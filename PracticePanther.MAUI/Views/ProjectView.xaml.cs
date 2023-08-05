@@ -9,6 +9,7 @@ public partial class ProjectView : ContentPage
     public ProjectView()
     {
         InitializeComponent();
+        BindingContext = new ProjectViewViewModel(ClientId);
     }
 
     private void OkClicked(object sender, EventArgs e)
@@ -30,6 +31,11 @@ public partial class ProjectView : ContentPage
 
     private void DeleteClicked(object sender, EventArgs e)
     {
-        (BindingContext as ProjectViewViewModel).RefreshProjectList();
+        (BindingContext as ClientViewModel).RefreshProjects();
+    }
+
+    private void EditClicked(object sender, EventArgs e)
+    {
+        (BindingContext as ClientViewModel).RefreshProjects();
     }
 }

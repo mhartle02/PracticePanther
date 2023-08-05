@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PracticePanther.MAUI.ViewModels"
              x:Class="PracticePanther.MAUI.Views.ProjectView"
              Title="ProjectView"
              Background="#95afc0"
              NavigatedTo="OnArriving">
+
+    <ContentPage.BindingContext>
+        <vm:ProjectViewViewModel/>
+    </ContentPage.BindingContext>
+
+
     <VerticalStackLayout>
         <Grid Padding="5" Margin="5">
             <Grid.RowDefinitions>
@@ -13,7 +20,7 @@
             </Grid.RowDefinitions>
             <Label 
             Grid.Row="0"
-            Text="{Binding Path=Model.Name}"
+            Text="{Binding Path=Display}"
             FontAttributes="Bold"
             FontSize="25"
             VerticalOptions="Center" 
@@ -24,31 +31,34 @@
         <Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="10*"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Entry Grid.Column="0" BackgroundColor="White" TextColor="Black"></Entry>
                 <Button Grid.Column="1" Text="Search" BackgroundColor="#686de0" TextColor="White"></Button>
-                <Button Grid.Column="2" Text="Add Project" TextColor="White" BackgroundColor="#686de0" Command="{Binding AddProjectCommand}"></Button>
+                <Button Grid.Column="2" Text="Add Project" TextColor="White" BackgroundColor="#6ab04c" Command="{Binding AddProjectCommand}"></Button>
             </Grid>
         </Grid>
         <ListView
-            ItemsSource="{Binding Path =Projects}"
-            SelectedItem="{Binding Path=SelectedProject}"
+            ItemsSource="{Binding Projects, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedProject,Mode=TwoWay}"
             >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" VerticalTextAlignment="Center" Text="{Binding Display}"></Label>
-                            <Button Grid.Column="1" Text="Timer" BackgroundColor="#686de0" TextColor="White" Command="{Binding TimerCommand}"/>
-                            <Button Grid.Column="2" Text="Delete" BackgroundColor="Red" TextColor="White" Command="{Binding Path=DeleteCommand}" 
+                            <Button Grid.Column="1" Text="Edit" BackgroundColor="#686de0" TextColor="White" Command="{Binding Path = EditCommand}"
+                                    CommandParameter="{Binding}" Clicked="EditClicked"></Button>
+                            <Button Grid.Column="2" Text="Timer" BackgroundColor="#686de0" TextColor="White" Command="{Binding TimerCommand}"/>
+                            <Button Grid.Column="3" Text="Delete" BackgroundColor="Red" TextColor="White" Command="{Binding DeleteCommand}" 
                                     CommandParameter="{Binding}" Clicked="DeleteClicked" />
                         </Grid>
                     </ViewCell>

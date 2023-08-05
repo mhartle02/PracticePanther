@@ -13,7 +13,7 @@ using PracticePanther.Library.Services;
 namespace PracticePanther.MAUI.ViewModels
 {
 
-    public class ProjectViewViewModel
+    public class ProjectViewViewModel : INotifyPropertyChanged
     {
         public ClientDTO Client { get; set; }
         public Project SelectedProject { get; set; }
@@ -41,6 +41,11 @@ namespace PracticePanther.MAUI.ViewModels
             {
                 Client = new ClientDTO();
             }
+
+        }
+
+        public ProjectViewViewModel()
+        {
 
         }
 

@@ -8,6 +8,7 @@ using PracticePanther.Library.Services;
 using System.Windows.Input;
 using PracticePanther.MAUI.Views;
 
+
 namespace PracticePanther.MAUI.ViewModels
 {
     public class ProjectViewModel
@@ -17,6 +18,7 @@ namespace PracticePanther.MAUI.ViewModels
         public ICommand AddCommand { get; private set; }
         public ICommand TimerCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
 
         public string Display
         {
@@ -29,7 +31,13 @@ namespace PracticePanther.MAUI.ViewModels
         private void ExecuteAdd()
         {
             ProjectService.Current.Add(Model);
-            Shell.Current.GoToAsync($"//ClientDetail?clientId={Model.ClientId}");
+            Shell.Current.GoToAsync($"//Projects?clientId={Model.ClientId}");
+        }
+
+        public void ExecuteEdit(int id)
+        {
+
+            Shell.Current.GoToAsync($"//ProjectsDetail?projectId={id}");
         }
 
         private void ExecuteDelete(int id)
@@ -59,7 +67,10 @@ namespace PracticePanther.MAUI.ViewModels
             TimerCommand = new Command(ExecuteTimer);
             DeleteCommand = new Command(
                 (p) => ExecuteDelete((p as ProjectViewModel).Model.Id));
-            
+            EditCommand = new Command(
+            (p) => ExecuteEdit((p as ProjectViewModel).Model.Id));
+
+
         }
 
         public ProjectViewModel()
@@ -80,5 +91,16 @@ namespace PracticePanther.MAUI.ViewModels
             Model = model;
             SetupCommands();
         }
+
+        public void SetStatusClose()
+        {
+            Model.IsActive = "CLOSED";
+        }
+
+        public void SetStatusOpen()
+        {
+            Model.IsActive = "OPEN";
+        }
+
     }
 }
